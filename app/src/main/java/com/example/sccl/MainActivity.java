@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+
 public class MainActivity extends Activity implements View.OnClickListener {
 
 
@@ -67,7 +69,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     //authored by Bojie Jia
 
     public EditText editText;
-
+    public EditText editText2;
+//    boolean clear_flag;
 
 
 
@@ -181,39 +184,84 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
     }
+    String inFunction = "";
     public void onClick(View view){
         String input=editText.getText().toString();
+
         switch (view.getId()){
             case R.id.button51:
+                inFunction+="0";
             case R.id.button53:
+                inFunction+="1";
             case R.id.button52:
+                inFunction+="2";
             case R.id.button71:
+                inFunction+="3";
             case R.id.button48:
+                inFunction+="4";
             case R.id.button40:
+                inFunction+="5";
             case R.id.button70:
+                inFunction+="6";
             case R.id.button39:
+                inFunction+="7";
             case R.id.button23:
-            case R.id.button69://for numbers
+                inFunction+="8";
+            case R.id.button69:
+                inFunction+="9";
+                //for numbers
             case R.id.button21:
+                //inFunction+="(";
             case R.id.button3:
+                //inFunction +=")";
             case R.id.button33:
+                //inFunction+="{";
             case R.id.button34:
+                //inFunction+="}";
             case R.id.button29:
-            case R.id.button30://for brackets
+                //inFunction+="[";
+            case R.id.button30:
+                //inFunction+="]";
+                //for brackets
             case R.id.button73:
             case R.id.button67://for variables
             case R.id.button68:
             case R.id.button55:
+                inFunction+="_+_";
             case R.id.button37:
+                inFunction+="_-_";
             case R.id.button63:
-            case R.id.button75:// for normal operations
+                inFunction+="_/_";
+            case R.id.button75:
+                inFunction+="_*_";
+                // for normal operations
                 //normal signal
-                
-
+            case R.id.button64:
+                input = "";
+                inFunction = "";
+                editText.setText("");
+            case R.id.button28:
+                getResult();
 
                 editText.setText(input+((Button)view).getText()+"");
-                //authored by Bojie Jia
+                break;
+                //authored by Bojie Jia & Jiaxi Shen
         }
+    }
+
+    private void getResult(){
+        Double result = 0.0;
+        while (inFunction!=""){
+            String[] tokens = inFunction.split("_");
+            for (String s : tokens){
+                if (tokens[0]==""){
+                    break;
+                }else {
+
+                }
+            }
+        }
+
     }
 
 
