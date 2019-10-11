@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -119,14 +120,19 @@ public class MainActivity extends Activity implements View.OnClickListener {
         //authored by Bojie Jia
 
         dot=findViewById(R.id.button68);
-        equal=findViewById(R.id.button28);
+
         plus=findViewById(R.id.button55);
         minus=findViewById(R.id.button37);
         divide=findViewById(R.id.button63);
         multipy=findViewById(R.id.button75);
+
+        // operations instantiation
+        //authored by Bojie Jia
+
+        equal=findViewById(R.id.button28);
         delete=findViewById(R.id.button65);
         allClear=findViewById(R.id.button64);
-        // operations instantiation
+        //sepecial operations
         //authored by Bojie Jia
 
         editText=findViewById(R.id.textView2);
@@ -177,6 +183,37 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
     public void onClick(View view){
         String input=editText.getText().toString();
+        switch (view.getId()){
+            case R.id.button51:
+            case R.id.button53:
+            case R.id.button52:
+            case R.id.button71:
+            case R.id.button48:
+            case R.id.button40:
+            case R.id.button70:
+            case R.id.button39:
+            case R.id.button23:
+            case R.id.button69://for numbers
+            case R.id.button21:
+            case R.id.button3:
+            case R.id.button33:
+            case R.id.button34:
+            case R.id.button29:
+            case R.id.button30://for brackets
+            case R.id.button73:
+            case R.id.button67://for variables
+            case R.id.button68:
+            case R.id.button55:
+            case R.id.button37:
+            case R.id.button63:
+            case R.id.button75:// for normal operations
+                //normal signal
+                
+
+
+                editText.setText(input+((Button)view).getText()+"");
+                //authored by Bojie Jia
+        }
     }
 
 
