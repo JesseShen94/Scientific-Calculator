@@ -81,7 +81,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
 
-    public EditText editText;
+    public EditText inputview;
     public EditText editText2;
 
 
@@ -157,7 +157,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
 
-        editText=findViewById(R.id.textView2);
+        inputview=findViewById(R.id.textView2);
 
         num0.setOnClickListener(this);
         num1.setOnClickListener(this);
@@ -203,14 +203,193 @@ public class MainActivity extends Activity implements View.OnClickListener {
         //add time click time
         //authored by Bojie Jia
 
-
-
-
-
     }
-    //String inFunction = "";
-    String input=editText.getText().toString();
+    String input="";
+
+    boolean fu=false;
+
     public void onClick(View view){
+        switch (view.getId()){
+            case R.id.button64:
+            {
+                input="";
+                inputview.setText(input);
+
+            }
+            break;
+            case R.id.button65:// first judge it is null or not, than delete
+            {
+                if(input.indexOf(" ")==input.length()-3){
+                    input=input.substring(0,input.length()-2);
+                }
+                if(input.length()>0){
+                    input=input.substring(0,input.length()-1);
+                }
+                inputview.setText(input);
+            }
+            break;
+            case R.id.button75:// multiply
+            {
+                if(input.length()==0){
+                    break;
+                }
+                if(input.contains(" ")){
+                    if(input.indexOf(" ")==input.length()-3||input.indexOf(" ")==input.length()-2||input.indexOf(" ")==input.length()-1)
+                   break;
+                        //call functions
+                }
+                fu=true;
+                input+="×";
+                inputview.setText(input);
+            }
+            break;
+            case R.id.button63://divide
+            {
+                if(input.length()==0)
+                {
+                    break;
+                }
+                if(input.contains(" ")){
+                    if(input.indexOf(" ")==input.length()-3||input.indexOf(" ")==input.length()-2||input.indexOf(" ")==input.length()-1)
+                        break;
+                    //call functions
+                }
+                fu=true;
+                input+="÷";
+                inputview.setText(input);
+            }
+            break;
+            case R.id.button37://minus
+            {
+                if(input.length()==0)
+                {
+                    break;
+                }
+                if(input.contains(" ")){
+                    if(input.indexOf(" ")==input.length()-3||input.indexOf(" ")==input.length()-2||input.indexOf(" ")==input.length()-1)
+                        break;
+                    //call functions
+                }
+                fu=true;
+                input+="－";
+                inputview.setText(input);
+            }
+            case R.id.button55://add
+            {
+                if(input.length()==0)
+                {
+                    break;
+                }
+                if(input.contains(" ")){
+                    if(input.indexOf(" ")==input.length()-3||input.indexOf(" ")==input.length()-2||input.indexOf(" ")==input.length()-1)
+                        break;
+                    //call functions
+                }
+                fu=true;
+                input+="+";
+                inputview.setText(input);
+            }
+            case R.id.button68:
+            {
+                if(input.length()==0)
+                {
+                    break;
+                }
+                if(input.contains(" ")){
+                    if(input.indexOf(" ")==input.length()-3||input.indexOf(" ")==input.length()-2||input.indexOf(" ")==input.length()-1)
+                        break;
+                    //call functions
+                }
+                fu=true;
+                input+=".";
+                inputview.setText(input);
+            }
+            case R.id.button51:
+            {
+                input+="0";
+                inputview.setText(input);
+            }
+            case R.id.button53:
+            {
+                input+="1";
+                inputview.setText(input);
+            }
+            case R.id.button52:
+            {
+                input+="2";
+                inputview.setText(input);
+            }
+            case R.id.button71:
+            {
+                input+="3";
+                inputview.setText(input);
+            }
+            case R.id.button48:
+            {
+                input+="4";
+                inputview.setText(input);
+            }
+            case R.id.button40:
+            {
+                input+="5";
+                inputview.setText(input);
+            }
+            case R.id.button70:
+            {
+                input+="6";
+                inputview.setText(input);
+            }
+            case R.id.button39:
+            {
+                input+="7";
+                inputview.setText(input);
+            }
+            case R.id.button23:
+            {
+                input+="8";
+                inputview.setText(input);
+            }
+            case R.id.button69:
+            {
+                input+="9";
+                inputview.setText(input);
+            }
+            case R.id.button5:
+            {
+                input+="π";
+                inputview.setText(input);
+            }
+            case R.id.button73:
+            {
+                input+="X";
+                inputview.setText(input);
+            }
+            case R.id.button21:
+            {
+                input+="(";
+                inputview.setText(input);
+            }
+            case R.id.button3:
+            {
+                input+=")";
+                inputview.setText(input);
+            }
+
+
+
+
+
+
+
+
+        }
+    }
+
+
+
+    //String inFunction = "";
+   // String input=editText.getText().toString();
+    /*public void onClick(View view){
 
 
         switch (view.getId()){
@@ -289,7 +468,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
 
-         /*   case R.id.button21:
+         *//*   case R.id.button21:
                 //inFunction+="(";
             case R.id.button3:
                 //inFunction +=")";
@@ -311,13 +490,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 input = "";
                 //inFunction = "";
                 //editText.setText("");
-           */
+           *//*
 
                 //break;
                 //authored by Bojie Jia & Jiaxi Shen
         }
     }
-
+*/
     /**
      * the main process of calculation
      * @param formula
