@@ -9,6 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 public class MainActivity extends Activity implements View.OnClickListener {
 
 
@@ -62,12 +67,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public Button divide;
     public Button multipy;
     public Button delete;
+    boolean clean;
     public Button allClear;
     //set up buttons for operations
     //authored by Bojie Jia
 
     public EditText editText;
-
+    public EditText editText2;
+//    boolean clear_flag;
 
 
 
@@ -181,41 +188,261 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
     }
+    //String inFunction = "";
+    String input=editText.getText().toString();
     public void onClick(View view){
-        String input=editText.getText().toString();
+
+
         switch (view.getId()){
             case R.id.button51:
+                //inFunction+="0";
             case R.id.button53:
+                //inFunction+="1";
             case R.id.button52:
+                //inFunction+="2";
             case R.id.button71:
+                //inFunction+="3";
             case R.id.button48:
+                //inFunction+="4";
             case R.id.button40:
+                //inFunction+="5";
             case R.id.button70:
+                //inFunction+="6";
             case R.id.button39:
+                //inFunction+="7";
             case R.id.button23:
-            case R.id.button69://for numbers
-            case R.id.button21:
+                //inFunction+="8";
+            case R.id.button69:
+                //inFunction+="9";
+                //for numbers
+            case R.id.button68:
+                //inFunction+=".";
+                if(clean){
+                    clean=false;
+                    editText.setText("");//assign NULL
+                }
+                editText.setText(input+((Button)view).getText()+"");//The result set is itself
+                break;
+                //authored by Bojie Jia
+
+            case R.id.button55:
+                //inFunction+="+";
+            case R.id.button37:
+                //inFunction+="-";
+            case R.id.button63:
+                //inFunction+="_/_";
+            case R.id.button75:
+                //inFunction+="_*_";
+                // for normal operations
+                if(clean){
+                    clean=false;
+                    input="";
+                    editText.setText("");
+                }
+                editText.setText(input+((Button)view).getText()+"");//The result set is itself
+                break;
+                //authored by Bojie Jia
+            case R.id.button65:
+                //clear function
+                if(clean){
+                    clean=false;
+                    input="";
+                    editText.setText("");
+                }
+                else if(input!=null||!input.equals("")){
+                    editText.setText(input.substring(0,input.length()-1));
+                    break;
+                }
+                break;
+            case R.id.button28:
+                getResult(input);
+                break;
+
+
+
+
+
+
+         /*   case R.id.button21:
+                //inFunction+="(";
             case R.id.button3:
+                //inFunction +=")";
             case R.id.button33:
+                //inFunction+="{";
             case R.id.button34:
+                //inFunction+="}";
             case R.id.button29:
-            case R.id.button30://for brackets
+                //inFunction+="[";
+            case R.id.button30:
+                //inFunction+="]";
+                //for brackets
             case R.id.button73:
             case R.id.button67://for variables
-            case R.id.button68:
-            case R.id.button55:
-            case R.id.button37:
-            case R.id.button63:
-            case R.id.button75:// for normal operations
+
+
                 //normal signal
+            case R.id.button64:
+                input = "";
+                //inFunction = "";
+                //editText.setText("");
+           */
 
-
-
-                editText.setText(input+((Button)view).getText()+"");
-                //authored by Bojie Jia
+                //break;
+                //authored by Bojie Jia & Jiaxi Shen
         }
     }
 
+    /**
+     * the main process of calculation
+     * @param formula
+     * @return calculate result
+     * @author Jiaxi Shen
+     */
+    public static Double getResult(String formula){
+        List<String> num=transform(formula);
+        Stack<Double> stack = new Stack<>();
+        double result = 0;
+        while (!num.isEmpty()) {
+            String temp = String.valueOf(num.remove(0));
+            if (isNumber(temp)) {
+                double s=Double.parseDouble(temp);
+                stack.push(s);
+            } else {
+                double a=stack.pop();
+                double b=stack.pop();
+                double c=calculateTwo(b,a,temp);
+                stack.push(c);
+
+            }
+        }
+        result=stack.pop();
+        return result;
+    }
+
+    /**
+     *calculate two numbers with given operation
+     * @param a
+     * @param b
+     * @param operation
+     * @return
+     * @author Jiaxi Shen
+     */
+    private static Double calculateTwo(double a, double b, String operation){
+        double res = 0;
+        switch (operation){
+            case "+":
+                res = a+b;
+                break;
+            case "-":
+                res = a-b;
+                break;
+            case "*":
+                res = a*b;
+                break;
+            case "/":
+                res = a/b;
+                break;
+        }
+        return res;
+    }
+
+
+    /**
+     * change Infix notation to postfix notation
+     * @param notation
+     * @return
+     * @author Jiaxi Shen
+     */
+    public static List<String> transform(String notation){
+        List<String> element = new ArrayList<>();
+        Stack<String> stack = new Stack<>();
+        notation = notation.replaceAll("(\\D)", "o$1o");
+        String[] strings = notation.trim().split("o");
+
+        for (int i = 0; i < strings.length; i++) {
+            String s = strings[i].trim();
+
+            if (isNumber(s)) {
+                // output if s is number
+                element.add(s);
+            } else if (!s.isEmpty()) {
+                if (s.charAt(0) == ')') {
+                    while (stack.peek().charAt(0) != '(') {
+                        element.add(stack.pop());
+                    }
+                    stack.pop();
+                } else {
+                    if (!stack.isEmpty() && !isMaxExp(s.charAt(0), stack.peek().charAt(0))) {
+                        while (!stack.isEmpty() && !isMaxExp(s.charAt(0), stack.peek().charAt(0))) {
+                            element.add(stack.pop());
+                        }
+                        stack.push(s);
+                    } else {
+                        stack.push(s);
+                    }
+                }
+            }
+        }
+        while (!stack.isEmpty()) {
+            element.add(stack.pop());
+        }
+        return element;
+    }
+
+    /**
+     * check the content of a String is number or not
+     * @param string
+     * @return
+     * @author Jiaxi Shen
+     */
+    public static Boolean isNumber(String string){
+        try {
+            Double.parseDouble(string);
+
+        } catch (RuntimeException e) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * check whether put into stack (i.e., "(" and ")")
+     * @param char1
+     * @param char2
+     * @return
+     * @author Jiaxi Shen
+     */
+    private static boolean isMaxExp(char char1, char char2){
+        if (char1 == '(')
+            return true;
+        if (char2 == ')')
+            return true;
+        if (order(char1) > order(char2))
+            return true;
+
+        return false;
+    }
+
+    /**
+     * get the execution order of operator
+     * @param operator
+     * @return
+     * @author Jiaxi Shen
+     */
+    private static int order(char operator){
+        int ord = 0;
+        switch (operator){
+            case '*':
+            case '/':
+                ord = 2;
+                break;
+            case '+':
+            case '-':
+                ord = 1;
+                break;
+        }
+        return ord;
+    }
 
 
 
