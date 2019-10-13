@@ -208,7 +208,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.button63:
             case R.id.button75:// for normal operations
                 //normal signal
-                
+
 
 
                 editText.setText(input+((Button)view).getText()+"");
