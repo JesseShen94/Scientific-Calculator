@@ -27,40 +27,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public Button num7;
     public Button num8;
     public Button num9;
-    //set up buttons for num0-9
+    //set up buttons for number,
     //authored by Bojie Jia
 
-    public Button leftParen;
-    public Button rightParen;
-    public Button leftBrace;
-    public Button rightBrace;
-    public Button leftBracket;
-    public Button rightBracket;
-    //set up buttons for brackets
-    //authored by Bojie Jia
-
-    public Button sin;
-    public Button cos;
-    public Button tan;
-    public Button log;
-    public Button power;
-    public Button FUNCTION;
-    public Button LOAD;
-    public Button SAVE;
-    // set up buttons for functions
-    //authored by Bojie Jia
-
+    public Button pi;
     public Button X;
     public Button Y;
-    //set up buttons for variable;
-    //authored by Bojie Jia
-
-    public Button leftArrow;
-    public Button rightArrow;
-    //set up buttons for arrows
+    //set up buttons for constants and variables
     //authored by Bojie Jia
 
     public Button dot;
+    //set up buttons for dot
+    //authored by Bojie Jia
+
+
+    public Button root;
+    public Button leftParen;
+    public Button rightParen;
     public Button equal;
     public Button plus;
     public Button minus;
@@ -69,12 +52,38 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public Button delete;
     boolean clean;
     public Button allClear;
+
     //set up buttons for operations
     //authored by Bojie Jia
 
+
+
+
+    public Button sin;
+    public Button cos;
+    public Button tan;
+    public Button log;
+    public Button power;
+    // set up buttons for normal functions
+    //authored by Bojie Jia
+
+
+
+
+
+    public Button FUNCTION;
+    public Button LOAD;
+    public Button SAVE;
+    public Button leftArrow;
+    public Button rightArrow;
+    // set up buttons for special functions
+    //authored by Bojie Jia
+
+
+
     public EditText editText;
     public EditText editText2;
-//    boolean clear_flag;
+
 
 
 
@@ -93,54 +102,60 @@ public class MainActivity extends Activity implements View.OnClickListener {
         num7=findViewById(R.id.button39);
         num8=findViewById(R.id.button23);
         num9=findViewById(R.id.button69);
+
+
         //number instantiation
         //authored by Bojie Jia
 
+        pi=findViewById(R.id.button5);
+        X=findViewById(R.id.button73);
+        Y=findViewById(R.id.button67);
+        // instants and variables instantiation
+        //authored by Bojie Jia
+
+        dot=findViewById(R.id.button68);
+        //dot instantiation
+        //authored by Bojie Jia
+
+        plus=findViewById(R.id.button55);
+        minus=findViewById(R.id.button37);
+        divide=findViewById(R.id.button63);
+        multipy=findViewById(R.id.button75);
+        equal=findViewById(R.id.button28);
+        delete=findViewById(R.id.button65);
+        allClear=findViewById(R.id.button64);
         leftParen=findViewById(R.id.button21);
         rightParen=findViewById(R.id.button3);
-        leftBrace=findViewById(R.id.button33);
-        rightBrace=findViewById(R.id.button34);
-        leftBracket=findViewById(R.id.button29);
-        rightBracket=findViewById(R.id.button30);
-        //brackets instantiation
+        pi=findViewById(R.id.button5);
+
+        // operations instantiation
         //authored by Bojie Jia
+
+
 
         sin=findViewById(R.id.button9);
         cos=findViewById(R.id.button35);
         tan=findViewById(R.id.button31);
         log=findViewById(R.id.button26);
         power=findViewById(R.id.button25);
+
+        //normal functions instantiation
+        //authored by Bojie Jia
+
+
         FUNCTION=findViewById(R.id.button38);
         LOAD=findViewById(R.id.button32);
         SAVE=findViewById(R.id.button10);
-        //functions instantiation
-        //authored by Bojie Jia
-
-        X=findViewById(R.id.button73);
-        Y=findViewById(R.id.button67);
-        // variables instantiation
-        //authored by Bojie Jia
-
         leftArrow=findViewById(R.id.button78);
         rightArrow=findViewById(R.id.button77);
-        // arrow instantiation
+        // special functions instantiation
         //authored by Bojie Jia
 
-        dot=findViewById(R.id.button68);
 
-        plus=findViewById(R.id.button55);
-        minus=findViewById(R.id.button37);
-        divide=findViewById(R.id.button63);
-        multipy=findViewById(R.id.button75);
 
-        // operations instantiation
-        //authored by Bojie Jia
 
-        equal=findViewById(R.id.button28);
-        delete=findViewById(R.id.button65);
-        allClear=findViewById(R.id.button64);
-        //sepecial operations
-        //authored by Bojie Jia
+
+
 
         editText=findViewById(R.id.textView2);
 
@@ -154,25 +169,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
         num7.setOnClickListener(this);
         num8.setOnClickListener(this);
         num9.setOnClickListener(this);
-        leftParen.setOnClickListener(this);
-        rightParen.setOnClickListener(this);
-        leftBracket.setOnClickListener(this);
-        rightBracket.setOnClickListener(this);
-        leftBrace.setOnClickListener(this);
-        rightBrace.setOnClickListener(this);
-        sin.setOnClickListener(this);
-        cos.setOnClickListener(this);
-        tan.setOnClickListener(this);
-        log.setOnClickListener(this);
-        power.setOnClickListener(this);
-        FUNCTION.setOnClickListener(this);
-        LOAD.setOnClickListener(this);
-        SAVE.setOnClickListener(this);
+        pi.setOnClickListener(this);
         X.setOnClickListener(this);
         Y.setOnClickListener(this);
-        leftArrow.setOnClickListener(this);
-        rightArrow.setOnClickListener(this);
         dot.setOnClickListener(this);
+
+
+
         equal.setOnClickListener(this);
         plus.setOnClickListener(this);
         minus.setOnClickListener(this);
@@ -180,6 +183,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
         multipy.setOnClickListener(this);
         delete.setOnClickListener(this);
         allClear.setOnClickListener(this);
+        leftParen.setOnClickListener(this);
+        rightParen.setOnClickListener(this);
+        root.setOnClickListener(this);
+
+        sin.setOnClickListener(this);
+        cos.setOnClickListener(this);
+        tan.setOnClickListener(this);
+        log.setOnClickListener(this);
+        power.setOnClickListener(this);
+
+
+        FUNCTION.setOnClickListener(this);
+        LOAD.setOnClickListener(this);
+        SAVE.setOnClickListener(this);
+        leftArrow.setOnClickListener(this);
+        rightArrow.setOnClickListener(this);
+
         //add time click time
         //authored by Bojie Jia
 
@@ -242,7 +262,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 editText.setText(input+((Button)view).getText()+"");//The result set is itself
                 break;
                 //authored by Bojie Jia
-            case R.id.button65:
+            case R.id.button64:
                 //clear function
                 if(clean){
                     clean=false;
@@ -254,7 +274,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     break;
                 }
                 break;
+
+
+
+
+
             case R.id.button28:
+
                 getResult(input);
                 break;
 
