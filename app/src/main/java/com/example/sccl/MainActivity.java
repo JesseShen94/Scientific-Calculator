@@ -50,11 +50,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public Button divide;
     public Button multipy;
     public Button delete;
+
     boolean clean;
     public Button allClear;
 
     //set up buttons for operations
     //authored by Bojie Jia
+
 
 
 
@@ -81,8 +83,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
 
+
     public EditText inputview;
-    public EditText editText2;
+
 
 
 
@@ -127,6 +130,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         leftParen=findViewById(R.id.button21);
         rightParen=findViewById(R.id.button3);
         pi=findViewById(R.id.button5);
+        root=findViewById(R.id.button4);
 
         // operations instantiation
         //authored by Bojie Jia
@@ -150,7 +154,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         rightArrow=findViewById(R.id.button77);
         // special functions instantiation
         //authored by Bojie Jia
-
 
 
 
@@ -206,7 +209,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
     String input="";
 
-    boolean fu=false;
+
 
     public void onClick(View view){
         switch (view.getId()){
@@ -230,150 +233,213 @@ public class MainActivity extends Activity implements View.OnClickListener {
             break;
             case R.id.button75:// multiply
             {
-                if(input.length()==0){
-                    break;
-                }
-                if(input.contains(" ")){
-                    if(input.indexOf(" ")==input.length()-3||input.indexOf(" ")==input.length()-2||input.indexOf(" ")==input.length()-1)
-                   break;
-                        //call functions
-                }
-                fu=true;
+
                 input+="×";
                 inputview.setText(input);
             }
             break;
             case R.id.button63://divide
             {
-                if(input.length()==0)
-                {
-                    break;
-                }
-                if(input.contains(" ")){
-                    if(input.indexOf(" ")==input.length()-3||input.indexOf(" ")==input.length()-2||input.indexOf(" ")==input.length()-1)
-                        break;
-                    //call functions
-                }
-                fu=true;
+
                 input+="÷";
                 inputview.setText(input);
             }
             break;
             case R.id.button37://minus
             {
-                if(input.length()==0)
-                {
-                    break;
-                }
-                if(input.contains(" ")){
-                    if(input.indexOf(" ")==input.length()-3||input.indexOf(" ")==input.length()-2||input.indexOf(" ")==input.length()-1)
-                        break;
-                    //call functions
-                }
-                fu=true;
+
                 input+="－";
                 inputview.setText(input);
             }
+            break;
             case R.id.button55://add
             {
-                if(input.length()==0)
-                {
-                    break;
-                }
-                if(input.contains(" ")){
-                    if(input.indexOf(" ")==input.length()-3||input.indexOf(" ")==input.length()-2||input.indexOf(" ")==input.length()-1)
-                        break;
-                    //call functions
-                }
-                fu=true;
+
                 input+="+";
                 inputview.setText(input);
             }
+            break;
             case R.id.button68:
             {
-                if(input.length()==0)
-                {
-                    break;
-                }
-                if(input.contains(" ")){
-                    if(input.indexOf(" ")==input.length()-3||input.indexOf(" ")==input.length()-2||input.indexOf(" ")==input.length()-1)
-                        break;
-                    //call functions
-                }
-                fu=true;
+
                 input+=".";
                 inputview.setText(input);
             }
+            break;
             case R.id.button51:
             {
                 input+="0";
                 inputview.setText(input);
             }
+            break;
             case R.id.button53:
             {
                 input+="1";
                 inputview.setText(input);
             }
+            break;
             case R.id.button52:
             {
                 input+="2";
                 inputview.setText(input);
             }
+            break;
             case R.id.button71:
             {
                 input+="3";
                 inputview.setText(input);
             }
+            break;
             case R.id.button48:
             {
                 input+="4";
                 inputview.setText(input);
             }
+            break;
             case R.id.button40:
             {
                 input+="5";
                 inputview.setText(input);
             }
+            break;
             case R.id.button70:
             {
                 input+="6";
                 inputview.setText(input);
             }
+            break;
             case R.id.button39:
             {
                 input+="7";
                 inputview.setText(input);
             }
+            break;
             case R.id.button23:
             {
                 input+="8";
                 inputview.setText(input);
             }
+            break;
             case R.id.button69:
             {
                 input+="9";
                 inputview.setText(input);
             }
+            break;
             case R.id.button5:
             {
                 input+="π";
                 inputview.setText(input);
             }
+            break;
             case R.id.button73:
             {
                 input+="X";
                 inputview.setText(input);
             }
+            break;
+            case R.id.button67:
+            {
+                input+="Y";
+                inputview.setText(input);
+            }
+            break;
+
+
             case R.id.button21:
             {
                 input+="(";
                 inputview.setText(input);
             }
+            break;
             case R.id.button3:
             {
                 input+=")";
                 inputview.setText(input);
             }
+            break;
+
+
+            case R.id.button4:
+            {
+                input+="√￣";
+                inputview.setText(input);
+            }
+            break;
+
+            case R.id.button28:
+            {
+                input+="=";
+                inputview.setText(input);
+            }
+            break;
+
+            case R.id.button9:
+            {
+                input+="sin";
+                inputview.setText(input);
+            }
+            break;
+
+            case R.id.button35:
+            {
+                input+="cos";
+                inputview.setText(input);
+            }
+            break;
+
+            case R.id.button31:
+            {
+                input+="tan";
+                inputview.setText(input);
+            }
+            break;
+
+            case R.id.button25:
+            {
+                input+="pow";
+                inputview.setText(input);
+            }
+            break;
+
+            case R.id.button26:
+            {
+                input+="log";
+                inputview.setText(input);
+            }
+            break;
+
+            case R.id.button38:
+            {
+                input+="F=";
+                inputview.setText(input);
+            }
+            break;
+
+            case R.id.button78:
+            {
+                input+="la";
+                inputview.setText(input);
+            }
+            break;
+            case R.id.button77:
+            {
+                input+="ra";
+                inputview.setText(input);
+            }
+            break;
+            case R.id.button32:
+            {
+                input+="load";
+                inputview.setText(input);
+            }
+            break;
+            case R.id.button10:
+            {
+                input+="save";
+                inputview.setText(input);
+            }
+            break;
 
 
 
