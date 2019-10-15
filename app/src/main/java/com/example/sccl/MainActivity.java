@@ -85,6 +85,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
     public EditText inputview;
+    public EditText outputview;
 
 
 
@@ -161,6 +162,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
         inputview=findViewById(R.id.textView2);
+        outputview=findViewById(R.id.textView);
 
         num0.setOnClickListener(this);
         num1.setOnClickListener(this);
@@ -369,8 +371,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             case R.id.button28:
             {
-                input+="=";
+
                 inputview.setText(input);
+                String out= getResult(input)+"";
+                outputview.setText(out);
+
             }
             break;
 
