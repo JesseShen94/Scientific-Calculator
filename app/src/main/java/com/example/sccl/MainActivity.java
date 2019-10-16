@@ -76,10 +76,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public Button FUNCTION;
     public Button LOAD;
     public Button SAVE;
-    public Button leftArrow;
-    public Button rightArrow;
     // set up buttons for special functions
     //authored by Bojie Jia
+//
+    public Button LN;
+    //set up button for Natural logarithm；
+    public Button E;
+    //set up button for Euler's number;
+    public Button pic;
+    //set up button for picture
+    public Button ass;
+    //set up button for assignment
 
 
 
@@ -87,6 +94,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public EditText inputview;
     public EditText outputview;
 
+    int flag=0;
 
 
 
@@ -114,6 +122,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         pi=findViewById(R.id.button5);
         X=findViewById(R.id.button73);
         Y=findViewById(R.id.button67);
+        E=findViewById(R.id.e);
         // instants and variables instantiation
         //authored by Bojie Jia
 
@@ -142,6 +151,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         cos=findViewById(R.id.button35);
         tan=findViewById(R.id.button31);
         log=findViewById(R.id.button26);
+        LN=findViewById(R.id.ln);
         power=findViewById(R.id.button25);
 
         //normal functions instantiation
@@ -151,8 +161,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         FUNCTION=findViewById(R.id.button38);
         LOAD=findViewById(R.id.button32);
         SAVE=findViewById(R.id.button10);
-        leftArrow=findViewById(R.id.button78);
-        rightArrow=findViewById(R.id.button77);
+//
+        pic=findViewById(R.id.pic);
+        ass=findViewById(R.id.assgin);
+
         // special functions instantiation
         //authored by Bojie Jia
 
@@ -198,30 +210,43 @@ public class MainActivity extends Activity implements View.OnClickListener {
         log.setOnClickListener(this);
         power.setOnClickListener(this);
 
-
+//
         FUNCTION.setOnClickListener(this);
         LOAD.setOnClickListener(this);
         SAVE.setOnClickListener(this);
-        leftArrow.setOnClickListener(this);
-        rightArrow.setOnClickListener(this);
+//
+        LN.setOnClickListener(this);
+        E.setOnClickListener(this);
+        pic.setOnClickListener(this);
+        ass.setOnClickListener(this);
 
         //add time click time
         //authored by Bojie Jia
 
     }
-    String input="";
 
 
+
+    String input="";// input will showed in inputView window
+    String dealWith="";//String dealWith is a String would be processed in the function section
+    String function="";//String function for save,load and assign
+
+    String valueX;
+    String valueY;
 
     public void onClick(View view){
         switch (view.getId()){
-            case R.id.button64:
+            case R.id.button64://allclear
             {
                 input="";
+                dealWith="";
                 inputview.setText(input);
+                outputview.setText("");
+
 
             }
             break;
+
             case R.id.button65:// first judge it is null or not, than delete
             {
                 if(input.indexOf(" ")==input.length()-3){
@@ -233,113 +258,186 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 inputview.setText(input);
             }
             break;
+
             case R.id.button75:// multiply
             {
 
                 input+="×";
+                ;
                 inputview.setText(input);
             }
             break;
+
             case R.id.button63://divide
             {
 
                 input+="÷";
+
                 inputview.setText(input);
             }
             break;
+
             case R.id.button37://minus
             {
 
                 input+="－";
+
                 inputview.setText(input);
             }
             break;
+
             case R.id.button55://add
             {
 
                 input+="+";
+
                 inputview.setText(input);
-            }
+              }
             break;
-            case R.id.button68:
+
+            case R.id.button68://"."
             {
 
-                input+=".";
-                inputview.setText(input);
+                if(flag==0) {
+                    input += ".";
+                    inputview.setText(input);
+                }
+                else valueX+='.';
             }
             break;
-            case R.id.button51:
+
+            case R.id.button51://"0"
             {
-                input+="0";
-                inputview.setText(input);
+                if(flag==0) {
+                    input += "0";
+                    inputview.setText(input);
+                }
+                else valueX+="0";
             }
             break;
-            case R.id.button53:
+
+            case R.id.button53://"1"
             {
-                input+="1";
-                inputview.setText(input);
+                if(flag==0) {
+                    input += "1";
+                    inputview.setText(input);
+                }
+                else valueX+="1";
             }
             break;
-            case R.id.button52:
+
+            case R.id.button52://"2"
             {
-                input+="2";
-                inputview.setText(input);
+                if(flag==0) {
+                    input += "2";
+                    inputview.setText(input);
+                }
+                else valueX+="2";
             }
             break;
-            case R.id.button71:
+
+            case R.id.button71://"3"
             {
-                input+="3";
-                inputview.setText(input);
+                if(flag==0) {
+                    input += "3";
+                    inputview.setText(input);
+                }
+                else valueX+="3";
             }
             break;
-            case R.id.button48:
+
+            case R.id.button48://"4"
             {
-                input+="4";
-                inputview.setText(input);
+                if(flag==0) {
+                    input += "4";
+                    inputview.setText(input);
+                }
+                else valueX+="4";
             }
             break;
-            case R.id.button40:
+
+            case R.id.button40://"5"
             {
-                input+="5";
-                inputview.setText(input);
+                if(flag==0) {
+                    input += "5";
+                    inputview.setText(input);
+                }
+                else valueX+="5";
             }
             break;
-            case R.id.button70:
+
+            case R.id.button70://"6"
             {
-                input+="6";
-                inputview.setText(input);
+                if(flag==0) {
+                    input += "6";
+                    inputview.setText(input);
+                }
+                else valueX+="6";
             }
             break;
-            case R.id.button39:
+
+            case R.id.button39://"7"
             {
-                input+="7";
-                inputview.setText(input);
+                if(flag==0) {
+                    input += "7";
+                    inputview.setText(input);
+                }
+                else valueX+="7";
             }
             break;
-            case R.id.button23:
+
+            case R.id.button23://"8"
             {
-                input+="8";
-                inputview.setText(input);
+                if(flag==0) {
+                    input += "8";
+                    inputview.setText(input);
+                }
+                else valueX+="8";
             }
             break;
-            case R.id.button69:
+
+            case R.id.button69://"9"
             {
-                input+="9";
-                inputview.setText(input);
+                if(flag==0) {
+                    input += "9";
+                    inputview.setText(input);
+                }
+                else valueX+="9";
             }
             break;
-            case R.id.button5:
+
+
+
+            case R.id.button5://"π"
             {
-                input+="π";
-                inputview.setText(input);
+                if(flag==0) {
+                    input += "π";
+                    inputview.setText(input);
+                }
+                else valueX+="π";
             }
             break;
-            case R.id.button73:
+
+            case R.id.e://"e"
+            {
+                if(flag==0) {
+                    input += "e";
+                    inputview.setText(input);
+                }
+                else valueX+="e";
+            }
+            break;
+
+            case R.id.button73://"X"
             {
                 input+="X";
+
                 inputview.setText(input);
             }
             break;
+
+
+
             case R.id.button67:
             {
                 input+="Y";
@@ -348,13 +446,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
             break;
 
 
-            case R.id.button21:
+
+
+            case R.id.button21://"("
             {
                 input+="(";
                 inputview.setText(input);
             }
             break;
-            case R.id.button3:
+
+
+            case R.id.button3://")"
             {
                 input+=")";
                 inputview.setText(input);
@@ -362,87 +464,115 @@ public class MainActivity extends Activity implements View.OnClickListener {
             break;
 
 
-            case R.id.button4:
+            case R.id.button4://root
             {
-                input+="√￣";
+                input+="√";
                 inputview.setText(input);
             }
             break;
 
-            case R.id.button28:
-            {
 
-                inputview.setText(input);
-                String out= getResult(input)+"";
-                outputview.setText(out);
-
-            }
-            break;
-
-            case R.id.button9:
+            case R.id.button9://sin
             {
                 input+="sin";
                 inputview.setText(input);
             }
             break;
 
-            case R.id.button35:
+            case R.id.button35://cos
             {
                 input+="cos";
                 inputview.setText(input);
             }
             break;
 
-            case R.id.button31:
+            case R.id.button31://tan
             {
                 input+="tan";
                 inputview.setText(input);
             }
             break;
 
-            case R.id.button25:
+            case R.id.button25://power
             {
-                input+="pow";
+                input+="^";
                 inputview.setText(input);
             }
             break;
 
-            case R.id.button26:
+            case R.id.button26://log
             {
                 input+="log";
+
                 inputview.setText(input);
             }
             break;
 
-            case R.id.button38:
+            case R.id.ln://ln
+            {
+                input+="ln";
+                inputview.setText(input);
+            }
+            break;
+
+            case R.id.button38://F=
             {
                 input+="F=";
                 inputview.setText(input);
             }
             break;
 
-            case R.id.button78:
+            case R.id.button10://save function
             {
-                input+="la";
+                function=input;
                 inputview.setText(input);
             }
             break;
-            case R.id.button77:
+
+            case R.id.button32://load function
             {
-                input+="ra";
-                inputview.setText(input);
+
+
+                inputview.setText(function);
             }
             break;
-            case R.id.button32:
-            {
-                input+="load";
-                inputview.setText(input);
+
+            case R.id.assgin: //assign value for function
+                {
+                    if(flag==0) {
+
+                        inputview.setText(Assignnumber(function));
+                        flag=1;
+                    }
+                    else {
+                        if(Assignnumber(function).equals("input X")){
+
+                            double n=Double.parseDouble(valueX);
+
+                            input=assignX(function,n);
+                            inputview.setText(input);
+                        }
+                        else if(Assignnumber(function).equals("input Y")){
+
+                            input=assignY(function,3);
+                            inputview.setText(input);
+                        }
+                        else if(Assignnumber(function).equals("input X,Y")){
+
+                            input=assignXY(function,3,3);
+                            inputview.setText(input);
+                        }
+                        flag=0;
+                    }
             }
             break;
-            case R.id.button10:
+            case R.id.button28://equal
             {
-                input+="save";
+                String innerfunciton=transfer(input);
                 inputview.setText(input);
+                String out= getResult(innerfunciton)+"";
+                outputview.setText(out);
+
             }
             break;
 
@@ -458,116 +588,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
 
-    //String inFunction = "";
-   // String input=editText.getText().toString();
-    /*public void onClick(View view){
-
-
-        switch (view.getId()){
-            case R.id.button51:
-                //inFunction+="0";
-            case R.id.button53:
-                //inFunction+="1";
-            case R.id.button52:
-                //inFunction+="2";
-            case R.id.button71:
-                //inFunction+="3";
-            case R.id.button48:
-                //inFunction+="4";
-            case R.id.button40:
-                //inFunction+="5";
-            case R.id.button70:
-                //inFunction+="6";
-            case R.id.button39:
-                //inFunction+="7";
-            case R.id.button23:
-                //inFunction+="8";
-            case R.id.button69:
-                //inFunction+="9";
-                //for numbers
-            case R.id.button68:
-                //inFunction+=".";
-                if(clean){
-                    clean=false;
-                    editText.setText("");//assign NULL
-                }
-                editText.setText(input+((Button)view).getText()+"");//The result set is itself
-                break;
-                //authored by Bojie Jia
-
-            case R.id.button55:
-                //inFunction+="+";
-            case R.id.button37:
-                //inFunction+="-";
-            case R.id.button63:
-                //inFunction+="_/_";
-            case R.id.button75:
-                //inFunction+="_*_";
-                // for normal operations
-                if(clean){
-                    clean=false;
-                    input="";
-                    editText.setText("");
-                }
-                editText.setText(input+((Button)view).getText()+"");//The result set is itself
-                break;
-                //authored by Bojie Jia
-            case R.id.button64:
-                //clear function
-                if(clean){
-                    clean=false;
-                    input="";
-                    editText.setText("");
-                }
-                else if(input!=null||!input.equals("")){
-                    editText.setText(input.substring(0,input.length()-1));
-                    break;
-                }
-                break;
-
-
-
-
-
-            case R.id.button28:
-
-                getResult(input);
-                break;
-
-
-
-
-
-
-         *//*   case R.id.button21:
-                //inFunction+="(";
-            case R.id.button3:
-                //inFunction +=")";
-            case R.id.button33:
-                //inFunction+="{";
-            case R.id.button34:
-                //inFunction+="}";
-            case R.id.button29:
-                //inFunction+="[";
-            case R.id.button30:
-                //inFunction+="]";
-                //for brackets
-            case R.id.button73:
-            case R.id.button67://for variables
-
-
-                //normal signal
-            case R.id.button64:
-                input = "";
-                //inFunction = "";
-                //editText.setText("");
-           *//*
-
-                //break;
-                //authored by Bojie Jia & Jiaxi Shen
-        }
-    }
-*/
     /**
      * the main process of calculation
      * @param formula
@@ -720,114 +740,139 @@ public class MainActivity extends Activity implements View.OnClickListener {
         return ord;
     }
 
-
-
-/*
-
-    public void numberSeven(View view){
-        Button button=(Button)view;
-        String addContent=button.getText().toString();
-
-    }
-    //click "7" button, show "7" in the input text view
-    public void numberEight (View view){
-
-    }
-    public void numberNine(View view){
-
-    }
-    public void numberFour(View view){
-
-    }
-    public void numberFive(View view){
-
-    }
-    public void numberSix(View view){
-
-    }
-    public void numberOne(View view){
-
-    }
-    public void numberTwo(View view){
-
-    }
-    public void numberThree(View view){
-
-    }
-    public void numberZero(View view){
-
-    }
-    public void dot(View view){
-
-    }
-    public void equal(View view){
-
-    }
-    public void plus(View view){
-
-    }
-    public void minus(View view){
-
-    }
-    public void multipy(View view){
-
-    }
-    public void divide(View view){
-
-    }
-    public void delete(View view){}
-    public void allClear(View view){
-
-    }
-    public void variableX(View view){
-
-    }
-    public void variableY(View view){
-
-    }
-    public void function(View view){
-
-    }
-    public void sin(View view){
-
-    }
-    public void cos(View view){
-
-    }
-    public void tan(View view){
-
-    }
-    public void power(View view){
-
-    }
-    public void log(View view){
-
-    }
-    public void save(View view){
-
-    }
-    public void load(View view){
-
-    }
-    public void leftBracket(View view){
-
-    }
-    public void rightBracket(View view){
-
-    }
-    public void leftBrace(View view){
-
-    }
-    public void rightBrace(View view){
-
-    }
-    public void leftParentheses(View view){
+    private static String Assignnumber(String function){
+        Boolean X=false;
+        Boolean Y=false;
+        for(int i=0;i<function.length();i++){
+            if(function.charAt(i)=='X'){
+                X=true;
+            }
+            if(function.charAt(i)=='Y'){
+                Y=true;
+            }
+        }
+        if(!X&&!Y){
+            return "ERROR!!!";
+        }
+        if(X&&!Y){
+            return "input X";
+        }
+        if(!X&&Y){
+            return "input Y";
+        }
+        if(X&&Y){
+            return "input X,Y";
+        }
+        return "ERROR!!!";
     }
 
-    public void rightParentheses(View view){
+    private static String assignX(String function, double num){
+        String newf="";
+        for(int i=0;i<function.length();i++){
+            if(function.charAt(i)!='X'){
+                newf+=function.charAt(i);
+            }
+            else newf+=num;
+
+        }
+        return newf;
 
     }
-*/
+
+    private static String assignY(String function, int y){
+        String newf="";
+        for(int i=0;i<function.length();i++){
+            if(function.charAt(i)!='Y'){
+                newf+=function.charAt(i);
+            }
+            else newf+=y;
+
+        }
+        return newf;
+
+
+    }
+    private static String assignXY(String function, int x, int y){
+        String newf="";
+        for(int i=0;i<function.length();i++){
+            if(function.charAt(i)=='X'){
+                newf+=x;
+            }
+            else if(function.charAt(i)=='Y'){
+                newf+=y;
+            }
+            else newf+=function.charAt(i);
+
+        }
+        return newf;
+
+    }
+
+    private static String transfer(String input){
+        String innerFuction="";
+        for(int i=0;i<input.length();i++){
+            if(input.charAt(i)=='×'){
+                innerFuction+="_×_";
+            }
+            else if(input.charAt(i)=='÷'){
+                innerFuction+="_÷_";
+            }
+            else if(input.charAt(i)=='－'){
+                innerFuction+="_－_";
+            }
+            else if(input.charAt(i)=='+'){
+                innerFuction+="_+_";
+            }
+            else if(input.charAt(i)=='π'){
+                innerFuction+="_pi_";//
+            }
+            else if(input.charAt(i)=='e'){
+                innerFuction+="_E_";
+            }
+            else if(input.charAt(i)=='('){
+                innerFuction+="_(_";
+            }
+            else if(input.charAt(i)==')'){
+                innerFuction+="_)_";
+            }
+            else if(input.charAt(i)=='√'){
+                innerFuction+="_root_";
+            }
+            else if(input.charAt(i)=='s'&&input.charAt(i+1)=='i'&&input.charAt(i+2)=='n'){
+                innerFuction+="_sin_";
+                i=i+2;
+                continue;
+            }
+            else if(input.charAt(i)=='c'&&input.charAt(i+1)=='o'&&input.charAt(i+2)=='s'){
+                innerFuction+="_cos_";
+                i=i+2;
+                continue;
+            }
+            else if(input.charAt(i)=='t'&&input.charAt(i+1)=='a'&&input.charAt(i+2)=='n'){
+                innerFuction+="_tan_";
+                i=i+2;
+                continue;
+            }
+            else if(input.charAt(i)=='^'){
+                innerFuction+="_^_";
+                i=i+2;
+                continue;
+
+            }
+            else if(input.charAt(i)=='l'&&input.charAt(i)=='o'&&input.charAt(i)=='g'){
+                innerFuction+="_log_";
+                i=i+2;
+                continue;
+            }
+            else if(input.charAt(i)=='l'&&input.charAt(i+1)=='n'){
+                innerFuction+="_ln_";
+                i=i+2;
+                continue;
+            }
+            else innerFuction+=input.charAt(i);
+        }
+        return innerFuction;
+    }
 
 
 
