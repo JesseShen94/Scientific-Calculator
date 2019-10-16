@@ -57,10 +57,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     //set up buttons for operations
     //authored by Bojie Jia
 
-
-
-
-
     public Button sin;
     public Button cos;
     public Button tan;
@@ -69,16 +65,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
     // set up buttons for normal functions
     //authored by Bojie Jia
 
-
-
-
-
     public Button FUNCTION;
     public Button LOAD;
     public Button SAVE;
     // set up buttons for special functions
     //authored by Bojie Jia
-//
+
     public Button LN;
     //set up button for Natural logarithm；
     public Button E;
@@ -88,16 +80,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public Button ass;
     //set up button for assignment
 
-
-
-
     public EditText inputview;
     public EditText outputview;
 
     int flag=0;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +100,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         num7=findViewById(R.id.button39);
         num8=findViewById(R.id.button23);
         num9=findViewById(R.id.button69);
-
 
         //number instantiation
         //authored by Bojie Jia
@@ -145,8 +130,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         // operations instantiation
         //authored by Bojie Jia
 
-
-
         sin=findViewById(R.id.button9);
         cos=findViewById(R.id.button35);
         tan=findViewById(R.id.button31);
@@ -156,7 +139,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         //normal functions instantiation
         //authored by Bojie Jia
-
 
         FUNCTION=findViewById(R.id.button38);
         LOAD=findViewById(R.id.button32);
@@ -168,14 +150,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         // special functions instantiation
         //authored by Bojie Jia
 
-
-
-
-
-
         inputview=findViewById(R.id.textView2);
         outputview=findViewById(R.id.textView);
-
         num0.setOnClickListener(this);
         num1.setOnClickListener(this);
         num2.setOnClickListener(this);
@@ -190,8 +166,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         X.setOnClickListener(this);
         Y.setOnClickListener(this);
         dot.setOnClickListener(this);
-
-
 
         equal.setOnClickListener(this);
         plus.setOnClickListener(this);
@@ -210,11 +184,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
         log.setOnClickListener(this);
         power.setOnClickListener(this);
 
-//
+
         FUNCTION.setOnClickListener(this);
         LOAD.setOnClickListener(this);
         SAVE.setOnClickListener(this);
-//
+
         LN.setOnClickListener(this);
         E.setOnClickListener(this);
         pic.setOnClickListener(this);
@@ -225,12 +199,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     }
 
-
-
     String input="";// input will showed in inputView window
     String dealWith="";//String dealWith is a String would be processed in the function section
     String function="";//String function for save,load and assign
-
     String valueX;
     String valueY;
 
@@ -570,18 +541,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 String innerfunciton=transfer(input);
                 inputview.setText(input);
-                String out= getResult(innerfunciton)+"";
-                outputview.setText(out);
+//                String out= getResult(innerfunciton)+"";
+                outputview.setText(innerfunciton);
 
             }
             break;
-
-
-
-
-
-
-
 
         }
     }
@@ -740,6 +704,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         return ord;
     }
 
+
     private static String Assignnumber(String function){
         Boolean X=false;
         Boolean Y=false;
@@ -855,18 +820,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
             else if(input.charAt(i)=='^'){
                 innerFuction+="_^_";
-                i=i+2;
-                continue;
+
 
             }
-            else if(input.charAt(i)=='l'&&input.charAt(i)=='o'&&input.charAt(i)=='g'){
+            else if(input.charAt(i)=='l'&&input.charAt(i+1)=='o'&&input.charAt(i+2)=='g'){
                 innerFuction+="_log_";
                 i=i+2;
                 continue;
             }
             else if(input.charAt(i)=='l'&&input.charAt(i+1)=='n'){
                 innerFuction+="_ln_";
-                i=i+2;
+                i=i+1;
                 continue;
             }
             else innerFuction+=input.charAt(i);
