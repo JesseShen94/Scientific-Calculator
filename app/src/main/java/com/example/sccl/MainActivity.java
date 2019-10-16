@@ -50,40 +50,324 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public Button divide;
     public Button multipy;
     public Button delete;
-
-    boolean clean;
     public Button allClear;
+    public Button sin;
 
     //set up buttons for operations
     //authored by Bojie Jia
-
-    public Button sin;
     public Button cos;
     public Button tan;
     public Button log;
     public Button power;
+    public Button FUNCTION;
     // set up buttons for normal functions
     //authored by Bojie Jia
-
-    public Button FUNCTION;
     public Button LOAD;
     public Button SAVE;
+    public Button LN;
     // set up buttons for special functions
     //authored by Bojie Jia
-
-    public Button LN;
     //set up button for Natural logarithm；
     public Button E;
     //set up button for Euler's number;
     public Button pic;
     //set up button for picture
     public Button ass;
-    //set up button for assignment
-
     public EditText inputview;
+    //set up button for assignment
     public EditText outputview;
-
+    boolean clean;
     int flag=0;
+    String input="";// input will showed in inputView window
+    String dealWith="";//String dealWith is a String would be processed in the function section
+    String function="";//String function for save,load and assign
+    String valueX;
+    String valueY;
+
+    /**
+     * the main process of calculation
+     * @param formula
+     * @return calculate result
+     * @author Jiaxi Shen
+     */
+    public static Double getResult(String formula){
+        List<String> num=transform(formula);
+        Stack<Double> stack = new Stack<>();
+        double result = 0;
+        while (!num.isEmpty()) {
+            String temp = String.valueOf(num.remove(0));
+            if (isNumber(temp)) {
+                double s=Double.parseDouble(temp);
+                stack.push(s);
+            } else {
+                double a=stack.pop();
+                double b=stack.pop();
+                double c=calculateTwo(b,a,temp);
+                stack.push(c);
+
+            }
+        }
+        result=stack.pop();
+        return result;
+    }
+
+    /**
+     *calculate two numbers with given operation
+     * @param a
+     * @param b
+     * @param operation
+     * @return
+     * @author Jiaxi Shen
+     */
+    private static Double calculateTwo(double a, double b, String operation){
+        double res = 0;
+        switch (operation){
+            case "+":
+                res = a+b;
+                break;
+            case "-":
+                res = a-b;
+                break;
+            case "*":
+                res = a*b;
+                break;
+            case "/":
+                res = a/b;
+                break;
+        }
+        return res;
+    }
+
+    /**
+     * change Infix notation to postfix notation
+     * @param notation
+     * @return
+     * @author Jiaxi Shen
+     */
+    public static List<String> transform(String notation){
+        List<String> element = new ArrayList<>();
+        Stack<String> stack = new Stack<>();
+        notation = notation.replaceAll("(\\D)", "o$1o");
+        String[] strings = notation.trim().split("o");
+
+        for (int i = 0; i < strings.length; i++) {
+            String s = strings[i].trim();
+
+            if (isNumber(s)) {
+                // output if s is number
+                element.add(s);
+            } else if (!s.isEmpty()) {
+                if (s.charAt(0) == ')') {
+                    while (stack.peek().charAt(0) != '(') {
+                        element.add(stack.pop());
+                    }
+                    stack.pop();
+                } else {
+                    if (!stack.isEmpty() && !isMaxExp(s.charAt(0), stack.peek().charAt(0))) {
+                        while (!stack.isEmpty() && !isMaxExp(s.charAt(0), stack.peek().charAt(0))) {
+                            element.add(stack.pop());
+                        }
+                        stack.push(s);
+                    } else {
+                        stack.push(s);
+                    }
+                }
+            }
+        }
+        while (!stack.isEmpty()) {
+            element.add(stack.pop());
+        }
+        return element;
+    }
+
+    /**
+     * check the content of a String is number or not
+     * @param string
+     * @return
+     * @author Jiaxi Shen
+     */
+    public static Boolean isNumber(String string){
+        try {
+            Double.parseDouble(string);
+
+        } catch (RuntimeException e) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * check whether put into stack (i.e., "(" and ")")
+     * @param char1
+     * @param char2
+     * @return
+     * @author Jiaxi Shen
+     */
+    private static boolean isMaxExp(char char1, char char2){
+        if (char1 == '(')
+            return true;
+        if (char2 == ')')
+            return true;
+        if (order(char1) > order(char2))
+            return true;
+
+        return false;
+    }
+
+    /**
+     * get the execution order of operator
+     * @param operator
+     * @return
+     * @author Jiaxi Shen
+     */
+    private static int order(char operator){
+        int ord = 0;
+        switch (operator){
+            case '*':
+            case '/':
+                ord = 2;
+                break;
+            case '+':
+            case '-':
+                ord = 1;
+                break;
+        }
+        return ord;
+    }
+
+    private static String Assignnumber(String function){
+        Boolean X=false;
+        Boolean Y=false;
+        for(int i=0;i<function.length();i++){
+            if(function.charAt(i)=='X'){
+                X=true;
+            }
+            if(function.charAt(i)=='Y'){
+                Y=true;
+            }
+        }
+        if(!X&&!Y){
+            return "ERROR!!!";
+        }
+        if(X&&!Y){
+            return "input X";
+        }
+        if(!X&&Y){
+            return "input Y";
+        }
+        if(X&&Y){
+            return "input X,Y";
+        }
+        return "ERROR!!!";
+    }
+
+    private static String assignX(String function, double x){
+        String newf="";
+        for(int i=0;i<function.length();i++){
+            if(function.charAt(i)!='X'){
+                newf+=function.charAt(i);
+            }
+            else newf+=x;
+
+        }
+        return newf;
+
+    }
+
+    private static String assignY(String function, double y){
+        String newf="";
+        for(int i=0;i<function.length();i++){
+            if(function.charAt(i)!='Y'){
+                newf+=function.charAt(i);
+            }
+            else newf+=y;
+
+        }
+        return newf;
+
+
+    }
+
+    private static String assignXY(String function, double x, double y){
+        String newf="";
+        for(int i=0;i<function.length();i++){
+            if(function.charAt(i)=='X'){
+                newf+=x;
+            }
+            else if(function.charAt(i)=='Y'){
+                newf+=y;
+            }
+            else newf+=function.charAt(i);
+
+        }
+        return newf;
+
+    }
+
+    private static String transfer(String input){
+        String innerFuction="";
+        for(int i=0;i<input.length();i++){
+            if(input.charAt(i)=='×'){
+                innerFuction+="_×_";
+            }
+            else if(input.charAt(i)=='÷'){
+                innerFuction+="_÷_";
+            }
+            else if(input.charAt(i)=='－'){
+                innerFuction+="_－_";
+            }
+            else if(input.charAt(i)=='+'){
+                innerFuction+="_+_";
+            }
+            else if(input.charAt(i)=='π'){
+                innerFuction+="_pi_";//
+            }
+            else if(input.charAt(i)=='e'){
+                innerFuction+="_E_";
+            }
+            else if(input.charAt(i)=='('){
+                innerFuction+="_(_";
+            }
+            else if(input.charAt(i)==')'){
+                innerFuction+="_)_";
+            }
+            else if(input.charAt(i)=='√'){
+                innerFuction+="_root_";
+            }
+            else if(input.charAt(i)=='s'&&input.charAt(i+1)=='i'&&input.charAt(i+2)=='n'){
+                innerFuction+="_sin_";
+                i=i+2;
+                continue;
+            }
+            else if(input.charAt(i)=='c'&&input.charAt(i+1)=='o'&&input.charAt(i+2)=='s'){
+                innerFuction+="_cos_";
+                i=i+2;
+                continue;
+            }
+            else if(input.charAt(i)=='t'&&input.charAt(i+1)=='a'&&input.charAt(i+2)=='n'){
+                innerFuction+="_tan_";
+                i=i+2;
+                continue;
+            }
+            else if(input.charAt(i)=='^'){
+                innerFuction+="_^_";
+
+
+            }
+            else if(input.charAt(i)=='l'&&input.charAt(i+1)=='o'&&input.charAt(i+2)=='g'){
+                innerFuction+="_log_";
+                i=i+2;
+                continue;
+            }
+            else if(input.charAt(i)=='l'&&input.charAt(i+1)=='n'){
+                innerFuction+="_ln_";
+                i=i+1;
+                continue;
+            }
+            else innerFuction+=input.charAt(i);
+        }
+        return innerFuction;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,12 +483,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     }
 
-    String input="";// input will showed in inputView window
-    String dealWith="";//String dealWith is a String would be processed in the function section
-    String function="";//String function for save,load and assign
-    String valueX;
-    String valueY;
-
     public void onClick(View view){
         switch (view.getId()){
             case R.id.button64://allclear
@@ -269,133 +547,116 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.button68://"."
             {
 
-                if(flag==0) {
+
                     input += ".";
                     inputview.setText(input);
-                }
-                else valueX+='.';
+
             }
             break;
 
             case R.id.button51://"0"
             {
-                if(flag==0) {
+
                     input += "0";
                     inputview.setText(input);
-                }
-                else valueX+="0";
+
             }
             break;
 
             case R.id.button53://"1"
             {
-                if(flag==0) {
+
                     input += "1";
                     inputview.setText(input);
-                }
-                else valueX+="1";
+
             }
             break;
 
             case R.id.button52://"2"
             {
-                if(flag==0) {
+
                     input += "2";
                     inputview.setText(input);
-                }
-                else valueX+="2";
+
             }
             break;
 
             case R.id.button71://"3"
             {
-                if(flag==0) {
+
                     input += "3";
                     inputview.setText(input);
-                }
-                else valueX+="3";
+
             }
             break;
 
             case R.id.button48://"4"
             {
-                if(flag==0) {
+
                     input += "4";
                     inputview.setText(input);
-                }
-                else valueX+="4";
+
             }
             break;
 
             case R.id.button40://"5"
             {
-                if(flag==0) {
+
                     input += "5";
                     inputview.setText(input);
-                }
-                else valueX+="5";
+
             }
             break;
 
             case R.id.button70://"6"
             {
-                if(flag==0) {
+
                     input += "6";
                     inputview.setText(input);
-                }
-                else valueX+="6";
+
             }
             break;
 
             case R.id.button39://"7"
             {
-                if(flag==0) {
+
                     input += "7";
                     inputview.setText(input);
-                }
-                else valueX+="7";
+
             }
             break;
 
             case R.id.button23://"8"
             {
-                if(flag==0) {
                     input += "8";
                     inputview.setText(input);
-                }
-                else valueX+="8";
+
             }
             break;
 
             case R.id.button69://"9"
             {
-                if(flag==0) {
                     input += "9";
                     inputview.setText(input);
-                }
-                else valueX+="9";
+
             }
             break;
 
 
-
             case R.id.button5://"π"
             {
-                if(flag==0) {
                     input += "π";
                     inputview.setText(input);
-                }
-                else valueX+="π";
+
             }
             break;
 
             case R.id.e://"e"
             {
-                if(flag==0) {
+
                     input += "e";
                     inputview.setText(input);
-                }
-                else valueX+="e";
+
             }
             break;
 
@@ -511,32 +772,32 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.assgin: //assign value for function
                 {
                     if(flag==0) {
-
                         inputview.setText(Assignnumber(function));
                         flag=1;
                     }
                     else {
                         if(Assignnumber(function).equals("input X")){
 
-                            double n=Double.parseDouble(valueX);
-
-                            input=assignX(function,n);
+                            double x=Double.parseDouble(valueX);
+                            input=assignX(function,x);
                             inputview.setText(input);
                         }
                         else if(Assignnumber(function).equals("input Y")){
-
-                            input=assignY(function,3);
+                            double y=Double.parseDouble(valueY);
+                            input=assignY(function,y);
                             inputview.setText(input);
                         }
                         else if(Assignnumber(function).equals("input X,Y")){
-
-                            input=assignXY(function,3,3);
+                            double x=Double.parseDouble(valueX);
+                            double y=Double.parseDouble(valueY);
+                            input=assignXY(function,x,y);
                             inputview.setText(input);
                         }
                         flag=0;
                     }
             }
             break;
+
             case R.id.button28://equal
             {
                 String innerfunciton=transfer(input);
@@ -546,299 +807,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             }
             break;
-
         }
     }
-
-
-
-    /**
-     * the main process of calculation
-     * @param formula
-     * @return calculate result
-     * @author Jiaxi Shen
-     */
-    public static Double getResult(String formula){
-        List<String> num=transform(formula);
-        Stack<Double> stack = new Stack<>();
-        double result = 0;
-        while (!num.isEmpty()) {
-            String temp = String.valueOf(num.remove(0));
-            if (isNumber(temp)) {
-                double s=Double.parseDouble(temp);
-                stack.push(s);
-            } else {
-                double a=stack.pop();
-                double b=stack.pop();
-                double c=calculateTwo(b,a,temp);
-                stack.push(c);
-
-            }
-        }
-        result=stack.pop();
-        return result;
-    }
-
-    /**
-     *calculate two numbers with given operation
-     * @param a
-     * @param b
-     * @param operation
-     * @return
-     * @author Jiaxi Shen
-     */
-    private static Double calculateTwo(double a, double b, String operation){
-        double res = 0;
-        switch (operation){
-            case "+":
-                res = a+b;
-                break;
-            case "-":
-                res = a-b;
-                break;
-            case "*":
-                res = a*b;
-                break;
-            case "/":
-                res = a/b;
-                break;
-        }
-        return res;
-    }
-
-
-    /**
-     * change Infix notation to postfix notation
-     * @param notation
-     * @return
-     * @author Jiaxi Shen
-     */
-    public static List<String> transform(String notation){
-        List<String> element = new ArrayList<>();
-        Stack<String> stack = new Stack<>();
-        notation = notation.replaceAll("(\\D)", "o$1o");
-        String[] strings = notation.trim().split("o");
-
-        for (int i = 0; i < strings.length; i++) {
-            String s = strings[i].trim();
-
-            if (isNumber(s)) {
-                // output if s is number
-                element.add(s);
-            } else if (!s.isEmpty()) {
-                if (s.charAt(0) == ')') {
-                    while (stack.peek().charAt(0) != '(') {
-                        element.add(stack.pop());
-                    }
-                    stack.pop();
-                } else {
-                    if (!stack.isEmpty() && !isMaxExp(s.charAt(0), stack.peek().charAt(0))) {
-                        while (!stack.isEmpty() && !isMaxExp(s.charAt(0), stack.peek().charAt(0))) {
-                            element.add(stack.pop());
-                        }
-                        stack.push(s);
-                    } else {
-                        stack.push(s);
-                    }
-                }
-            }
-        }
-        while (!stack.isEmpty()) {
-            element.add(stack.pop());
-        }
-        return element;
-    }
-
-    /**
-     * check the content of a String is number or not
-     * @param string
-     * @return
-     * @author Jiaxi Shen
-     */
-    public static Boolean isNumber(String string){
-        try {
-            Double.parseDouble(string);
-
-        } catch (RuntimeException e) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * check whether put into stack (i.e., "(" and ")")
-     * @param char1
-     * @param char2
-     * @return
-     * @author Jiaxi Shen
-     */
-    private static boolean isMaxExp(char char1, char char2){
-        if (char1 == '(')
-            return true;
-        if (char2 == ')')
-            return true;
-        if (order(char1) > order(char2))
-            return true;
-
-        return false;
-    }
-
-    /**
-     * get the execution order of operator
-     * @param operator
-     * @return
-     * @author Jiaxi Shen
-     */
-    private static int order(char operator){
-        int ord = 0;
-        switch (operator){
-            case '*':
-            case '/':
-                ord = 2;
-                break;
-            case '+':
-            case '-':
-                ord = 1;
-                break;
-        }
-        return ord;
-    }
-
-
-    private static String Assignnumber(String function){
-        Boolean X=false;
-        Boolean Y=false;
-        for(int i=0;i<function.length();i++){
-            if(function.charAt(i)=='X'){
-                X=true;
-            }
-            if(function.charAt(i)=='Y'){
-                Y=true;
-            }
-        }
-        if(!X&&!Y){
-            return "ERROR!!!";
-        }
-        if(X&&!Y){
-            return "input X";
-        }
-        if(!X&&Y){
-            return "input Y";
-        }
-        if(X&&Y){
-            return "input X,Y";
-        }
-        return "ERROR!!!";
-    }
-
-    private static String assignX(String function, double num){
-        String newf="";
-        for(int i=0;i<function.length();i++){
-            if(function.charAt(i)!='X'){
-                newf+=function.charAt(i);
-            }
-            else newf+=num;
-
-        }
-        return newf;
-
-    }
-
-    private static String assignY(String function, int y){
-        String newf="";
-        for(int i=0;i<function.length();i++){
-            if(function.charAt(i)!='Y'){
-                newf+=function.charAt(i);
-            }
-            else newf+=y;
-
-        }
-        return newf;
-
-
-    }
-    private static String assignXY(String function, int x, int y){
-        String newf="";
-        for(int i=0;i<function.length();i++){
-            if(function.charAt(i)=='X'){
-                newf+=x;
-            }
-            else if(function.charAt(i)=='Y'){
-                newf+=y;
-            }
-            else newf+=function.charAt(i);
-
-        }
-        return newf;
-
-    }
-
-    private static String transfer(String input){
-        String innerFuction="";
-        for(int i=0;i<input.length();i++){
-            if(input.charAt(i)=='×'){
-                innerFuction+="_×_";
-            }
-            else if(input.charAt(i)=='÷'){
-                innerFuction+="_÷_";
-            }
-            else if(input.charAt(i)=='－'){
-                innerFuction+="_－_";
-            }
-            else if(input.charAt(i)=='+'){
-                innerFuction+="_+_";
-            }
-            else if(input.charAt(i)=='π'){
-                innerFuction+="_pi_";//
-            }
-            else if(input.charAt(i)=='e'){
-                innerFuction+="_E_";
-            }
-            else if(input.charAt(i)=='('){
-                innerFuction+="_(_";
-            }
-            else if(input.charAt(i)==')'){
-                innerFuction+="_)_";
-            }
-            else if(input.charAt(i)=='√'){
-                innerFuction+="_root_";
-            }
-            else if(input.charAt(i)=='s'&&input.charAt(i+1)=='i'&&input.charAt(i+2)=='n'){
-                innerFuction+="_sin_";
-                i=i+2;
-                continue;
-            }
-            else if(input.charAt(i)=='c'&&input.charAt(i+1)=='o'&&input.charAt(i+2)=='s'){
-                innerFuction+="_cos_";
-                i=i+2;
-                continue;
-            }
-            else if(input.charAt(i)=='t'&&input.charAt(i+1)=='a'&&input.charAt(i+2)=='n'){
-                innerFuction+="_tan_";
-                i=i+2;
-                continue;
-            }
-            else if(input.charAt(i)=='^'){
-                innerFuction+="_^_";
-
-
-            }
-            else if(input.charAt(i)=='l'&&input.charAt(i+1)=='o'&&input.charAt(i+2)=='g'){
-                innerFuction+="_log_";
-                i=i+2;
-                continue;
-            }
-            else if(input.charAt(i)=='l'&&input.charAt(i+1)=='n'){
-                innerFuction+="_ln_";
-                i=i+1;
-                continue;
-            }
-            else innerFuction+=input.charAt(i);
-        }
-        return innerFuction;
-    }
-
-
-
 
 }
