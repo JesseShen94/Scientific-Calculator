@@ -1,0 +1,10 @@
+This project is our original work except parts in reference list.
+Any codes are referenced have been stated both at comment next to the code and reference list in this statement.
+Reference List:
+1. Calculate.transform(). reference from: https://blog.csdn.net/qq_39456707/article/details/82690892
+2. MainActivity.OnClick().case R.id.button10 && case R.id.button32. reference from:
+   https://blog.csdn.net/andanwubian/article/details/81974194
+
+
+signature: Jiaxi Shen (u6718946)
+           Bojie Jia  (u6730978)

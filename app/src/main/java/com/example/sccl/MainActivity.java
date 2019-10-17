@@ -713,6 +713,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
             case R.id.button10://save function
+                //reference from: https://blog.csdn.net/andanwubian/article/details/81974194
             {
                 try{
                     function = input;

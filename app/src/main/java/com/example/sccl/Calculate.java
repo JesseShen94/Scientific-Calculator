@@ -67,8 +67,9 @@ public class Calculate {
 
     /**
      * change Infix notation to postfix notation
-     * @param notation
-     * @return
+     * @param notation: a String notation
+     * @return element: a list of String which is elements of notation and have been changed to postfix notation order
+     * @reference: part of this function is reference from: https://blog.csdn.net/qq_39456707/article/details/82690892
      */
     public static List<String> transform(String notation){
         List<String> element = new ArrayList<>();
