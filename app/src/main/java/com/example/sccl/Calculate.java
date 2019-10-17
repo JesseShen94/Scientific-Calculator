@@ -67,8 +67,9 @@ public class Calculate {
 
     /**
      * change Infix notation to postfix notation
-     * @param notation
-     * @return
+     * @param notation: a String notation
+     * @return element: a list of String which is elements of notation and have been changed to postfix notation order
+     * @reference: part of this function is reference from: https://blog.csdn.net/qq_39456707/article/details/82690892
      */
     public static List<String> transform(String notation){
         List<String> element = new ArrayList<>();
@@ -91,10 +92,8 @@ public class Calculate {
         }
         System.out.println("fixNotation: "+stringsarray);
         for (int i = 0; i < strings.length; i++) {
-//            System.out.println("String["+i+"]: "+strings[i]);
             String s = strings[i].trim();
             if (isNumber(s)) {
-                // output if s is number
                 element.add(s);
             } else if (!s.isEmpty()) {
                 if (s.charAt(0) == ')') {
@@ -128,7 +127,6 @@ public class Calculate {
     public static String[] fixNotation(String notation){
         String[] strings = notation.trim().split("_");
         for (int i =0;i<strings.length;i++){
-            //System.out.println("strings["+i+"]: "+strings[i]);
         }
         for (int i=0; i<strings.length;i++){
             if (strings[i].equals("E")){
@@ -326,8 +324,8 @@ public class Calculate {
 
     /**
      * calculate every functions inner of sin(),log(),etc...
-     * @param substrings
-     * @return
+     * @param substrings: which is the substring after a special operator and  its content is also a notation. (e.g., sin(...) ).
+     * @return a String[] which's first string is replaced by the result of notation in a () and keep the remaining string[].
      */
     public static String[] CalInSpeical(String[] substrings){
         int flag1 = 0;
@@ -405,8 +403,8 @@ public class Calculate {
 
     /**
      * get the execution order of operator
-     * @param operator
-     * @return
+     * @param operator: '+', '-', '*', '/'.
+     * @return the int number of order (i.e., '*'&'/' = 2 > '+'&'-' = 1).
      */
     private static int order(char operator){
         int ord = 0;
@@ -421,20 +419,5 @@ public class Calculate {
                 break;
         }
         return ord;
-    }
-
-    public static String[] deleteSpace(String[] strings){
-        String s = new String();
-        for (int i =0;i<strings.length;i++){
-            if (!strings[i].equals(" ")){
-                s = s+strings[i]+"_";
-            }
-
-        }
-        if (s.charAt(s.length()-1)=='_'){
-            s = s.substring(0,s.length()-1);
-        }
-        String[] strings1 = s.trim().split("_");
-        return strings1;
     }
 }

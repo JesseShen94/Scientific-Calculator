@@ -3,16 +3,24 @@ package com.example.sccl;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
+import java.util.stream.IntStream;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -318,6 +326,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 input = "";
                 value = "";
                 valueY="";
+                function = "";
                 inputview.setText(input);
                 outputview.setText("");
 
@@ -704,14 +713,40 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
             case R.id.button10://save function
+                //reference from: https://blog.csdn.net/andanwubian/article/details/81974194
             {
-                function = input;
+                try{
+                    function = input;
+                    FileOutputStream outputStream = this.openFileOutput("functions.txt",Context.MODE_PRIVATE);
+                    outputStream.write(function.getBytes());
+                    outputStream.close();
+                }catch (FileNotFoundException e){
+                    return;
+                } catch (IOException e){
+                    return;
+                }
                 inputview.setText(input);
             }
             break;
 
             case R.id.button32://load function
             {
+                try {
+                    FileInputStream fileInputStream = this.openFileInput("functions.txt");
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    byte[] buffer = new byte[1024];
+                    int length = -1;
+                    while ((length = fileInputStream.read(buffer))!=-1){
+                        stream.write(buffer,0,length);
+                    }
+                    stream.close();
+                    fileInputStream.close();
+                    function = stream.toString();
+                } catch (FileNotFoundException e){
+                    e.printStackTrace();
+                } catch (IOException e){
+                    return;
+                }
                 inputview.setText(function);
             }
             break;

@@ -76,3 +76,30 @@ Action items                                                               Owner
 8.Update new button functions                                              BojieJia&Jesse         18th Oct              In progress
 8.UI optimization                                                          BojieJia&Jesse         18th Oct              In progress
 9.Test                                                                     BojieJia&Jesse         18th Oct              In progress
+
+
+Meeting minutes<4>
+Location: Kambri level 5
+Date: 17th October 2019
+Time: 16:00-23:00
+Attendees:   Bojie Jia(u6730978)
+             Jiaxi Shen(u6718946)
+
+
+Agenda items:
+1.fix and improve details.
+2.design test.
+
+
+Action items                                                               Owner                  Deadline              Status
+1.the layout of mainActivity                                               BojieJia               12th Oct              Completed
+2.the layout of welcome                                                    Jesse                  12th Oct              Completed
+3.Design buttons                                                           BojieJia               12th Oct              Completed
+4.realization of inner functions                                           Jesse                  12th Oct              Completed
+5.fix bugs occured                                                         BojieJia&Jesse         13th Oct              Completed
+6.button optimization                                                      Bojie Jia              16th Oct              Completed
+7.Complete the remaining functions                                         BojieJia&Jesse         18th Oct              Completed
+8.Update new button functions                                              BojieJia&Jesse         18th Oct              Completed
+8.UI optimization                                                          BojieJia&Jesse         18th Oct              Completed
+9.fix and improve functions                                                BojieJia&Jesse         18th Oct              In progress
+10.Test                                                                     BojieJia&Jesse        18th Oct              In progress
