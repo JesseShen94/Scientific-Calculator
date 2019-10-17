@@ -308,13 +308,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
         String innerFuction="";
         for(int i=0;i<input.length();i++){
             if(input.charAt(i)=='×'){
-                innerFuction+="_×_";
+                innerFuction+="_*_";
             }
             else if(input.charAt(i)=='÷'){
-                innerFuction+="_÷_";
+                innerFuction+="_/_";
             }
             else if(input.charAt(i)=='－'){
-                innerFuction+="_－_";
+                innerFuction+="_-_";
             }
             else if(input.charAt(i)=='+'){
                 innerFuction+="_+_";
@@ -801,7 +801,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.button28://equal
             {
                 String innerfunciton=transfer(input);
-                inputview.setText(input);
+                //inputview.setText(input);
+                inputview.setText(innerfunciton);
                 String out= Calculate.getResult(innerfunciton)+"";
                 outputview.setText(out);
 
