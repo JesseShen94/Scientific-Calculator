@@ -721,6 +721,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 if (flag == 0) {
                     inputview.setText(Assignnumber(input));
                     flag = 1;
+                    if(Assignnumber(input).equals("ERROR!!!")){
+                        flag=0;
+                    }
                 } else if (flag == 1) {
 
                     if (Assignnumber(input).equals("input X")) {
@@ -742,7 +745,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         inputview.setText(text);
                         flag = 2;
                     }
-                } else if (flag == 2) {
+                    else if(Assignnumber(input).equals("ERROR!!!")){
+                        flag=0;
+                    }
+                }
+                else if (flag == 2) {
                     String text = "X=" + value + ", Y=" + valueY;
                     inputview.setText(text);
                     double x = Double.parseDouble(value);
