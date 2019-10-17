@@ -57,9 +57,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     //authored by Bojie Jia
     public Button cos;
     public Button tan;
-    public Button log;
+    public Button lg;
     public Button power;
-    public Button FUNCTION;
     // set up buttons for normal functions
     //authored by Bojie Jia
     public Button LOAD;
@@ -70,8 +69,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     //set up button for Natural logarithm；
     public Button E;
     //set up button for Euler's number;
-    public Button pic;
-    //set up button for picture
+
     public Button ass;
     public EditText inputview;
     //set up button for assignment
@@ -80,7 +78,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public String valueY = "";
     int flag = 0;
     String input = "";// input will showed in inputView window
-    String dealWith = "";//String dealWith is a String would be processed in the function section
     String function = "";//String function for save,load and assign
 
 
@@ -345,9 +342,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 innerFuction += "_^_";
 
 
-            } else if (input.charAt(i) == 'l' && input.charAt(i + 1) == 'o' && input.charAt(i + 2) == 'g') {
-                innerFuction += "_log_";
-                i = i + 2;
+            } else if (input.charAt(i) == 'l' && input.charAt(i + 1) == 'g' ) {
+                innerFuction += "_lg_";
+                i = i + 1;
                 continue;
             } else if (input.charAt(i) == 'l' && input.charAt(i + 1) == 'n') {
                 innerFuction += "_ln_";
@@ -407,18 +404,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
         sin = findViewById(R.id.button9);
         cos = findViewById(R.id.button35);
         tan = findViewById(R.id.button31);
-        log = findViewById(R.id.button26);
+        lg = findViewById(R.id.button26);
         LN = findViewById(R.id.ln);
         power = findViewById(R.id.button25);
 
         //normal functions instantiation
         //authored by Bojie Jia
 
-        FUNCTION = findViewById(R.id.button38);
         LOAD = findViewById(R.id.button32);
         SAVE = findViewById(R.id.button10);
-//
-        pic = findViewById(R.id.pic);
         ass = findViewById(R.id.assgin);
 
         // special functions instantiation
@@ -456,17 +450,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
         sin.setOnClickListener(this);
         cos.setOnClickListener(this);
         tan.setOnClickListener(this);
-        log.setOnClickListener(this);
+        lg.setOnClickListener(this);
         power.setOnClickListener(this);
 
 
-        FUNCTION.setOnClickListener(this);
+
         LOAD.setOnClickListener(this);
         SAVE.setOnClickListener(this);
 
         LN.setOnClickListener(this);
         E.setOnClickListener(this);
-        pic.setOnClickListener(this);
+
         ass.setOnClickListener(this);
 
         //add time click time
@@ -479,8 +473,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.button64://allclear
             {
                 input = "";
-                dealWith = "";
                 value = "";
+                valueY="";
                 inputview.setText(input);
                 outputview.setText("");
 
@@ -842,11 +836,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.button26://log
             {
                 if (flag == 1) {
-                    value += "log";
+                    value += "lg";
                 } else if (flag == 2) {
-                    valueY += "log";
+                    valueY += "lg";
                 } else
-                    input += "log";
+                    input += "lg";
 
                 inputview.setText(input);
             }
@@ -864,12 +858,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
             break;
 
-            case R.id.button38://F=
-            {
-                input += "F=";
-                inputview.setText(input);
-            }
-            break;
+
 
             case R.id.button10://save function
             {
