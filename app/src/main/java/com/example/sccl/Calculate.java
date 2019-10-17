@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Stack;
 
 public class Calculate {
+
     /**
      * main function about calculating and get a result
      * @param formula
@@ -72,9 +73,25 @@ public class Calculate {
     public static List<String> transform(String notation){
         List<String> element = new ArrayList<>();
         Stack<String> stack = new Stack<>();
+        for (int i = 0;i<notation.trim().length();i++){
+            if (notation.charAt(i) == '_'&&i!=notation.length()-1){
+                if (notation.charAt(i+1)=='_'){
+                    int l = notation.length();
+                    notation = notation.substring(0,i+1)+notation.substring(i+2,l);
+                    if (i!=0){
+                        i--;
+                    }
+                }
+            }
+        }
         String[] strings = fixNotation(notation);
-
+        String stringsarray = new String();
+        for (int i =0;i<strings.length;i++){
+            stringsarray += strings[i];
+        }
+        System.out.println("fixNotation: "+stringsarray);
         for (int i = 0; i < strings.length; i++) {
+//            System.out.println("String["+i+"]: "+strings[i]);
             String s = strings[i].trim();
             if (isNumber(s)) {
                 // output if s is number
@@ -110,55 +127,173 @@ public class Calculate {
      */
     public static String[] fixNotation(String notation){
         String[] strings = notation.trim().split("_");
+        for (int i =0;i<strings.length;i++){
+            //System.out.println("strings["+i+"]: "+strings[i]);
+        }
         for (int i=0; i<strings.length;i++){
             if (strings[i].equals("E")){
                 strings[i] = String.valueOf(Math.E);
             } else if (strings[i].equals("pi")){
                 strings[i] = String.valueOf(Math.PI);
             } else if (strings[i].equals("sin")){
+                if (strings[i+1].equals("(")){
+                    String[] substrings = new String[strings.length-i-1];
+                    for (int j = 0;j<substrings.length;j++){
+                        substrings[j] = strings[i+j+1];
+                    }
+                    substrings = CalInSpeical(substrings);
+                    for (int k = 0;k<strings.length-1-i;k++){
+                        strings[i+k+1] = substrings[k];
+                    }
+                }
                 double ang = Math.toRadians(Double.parseDouble(strings[i+1]));
                 strings[i] = String.valueOf(Math.sin(ang));
                 strings[i+1] = " ";
                 i++;
                 continue;
             } else if (strings[i].equals("cos")) {
+                if (strings[i+1].equals("(")){
+                    String[] substrings = new String[strings.length-i-1];
+                    for (int j = 0;j<strings.length-i-1;j++){
+                        substrings[j] = strings[i+j+1];
+                    }
+                    substrings = CalInSpeical(substrings);
+                    for (int k = 0;k<strings.length-1-i;k++){
+                        strings[i+k+1] = substrings[k];
+                    }
+                }
                 double ang = Math.toRadians(Double.parseDouble(strings[i + 1]));
                 strings[i] = String.valueOf(Math.cos(ang));
                 strings[i + 1] = " ";
                 i++;
                 continue;
             } else if (strings[i].equals("tan")) {
+                if (strings[i+1].equals("(")){
+                    String[] substrings = new String[strings.length-i-1];
+                    for (int j = 0;j<strings.length-i-1;j++){
+                        substrings[j] = strings[i+j+1];
+                    }
+                    substrings = CalInSpeical(substrings);
+                    for (int k = 0;k<strings.length-1-i;k++){
+                        strings[i+k+1] = substrings[k];
+                    }
+                }
                 double ang = Math.toRadians(Double.parseDouble(strings[i + 1]));
                 strings[i] = String.valueOf(Math.tan(ang));
                 strings[i + 1] = " ";
                 i++;
                 continue;
             } else if (strings[i].equals("ln")) {
+                if (strings[i+1].equals("(")){
+                    String[] substrings = new String[strings.length-i-1];
+                    for (int j = 0;j<strings.length-i-1;j++){
+                        substrings[j] = strings[i+j+1];
+                    }
+                    substrings = CalInSpeical(substrings);
+                    for (int k = 0;k<strings.length-1-i;k++){
+                        strings[i+k+1] = substrings[k];
+                    }
+                }
                 double number = Double.parseDouble(strings[i+1]);
                 strings[i] = String.valueOf(Math.log(number));
                 strings[i + 1] = " ";
                 i++;
                 continue;
             } else if (strings[i].equals("log")) {
+                if (strings[i+1].equals("(")){
+                    String[] substrings = new String[strings.length-i-1];
+                    for (int j = 0;j<strings.length-i-1;j++){
+                        substrings[j] = strings[i+j+1];
+                    }
+                    substrings = CalInSpeical(substrings);
+                    for (int k = 0;k<strings.length-1-i;k++){
+                        strings[i+k+1] = substrings[k];
+                    }
+                }
                 double number = Double.parseDouble(strings[i + 1]);
                 strings[i] = String.valueOf(Math.log(number) / Math.log(2));
                 strings[i + 1] = " ";
                 i++;
                 continue;
             } else if (strings[i].equals("lg")) {
+                if (strings[i+1].equals("(")){
+                    String[] substrings = new String[strings.length-i-1];
+                    for (int j = 0;j<strings.length-i-1;j++){
+                        substrings[j] = strings[i+j+1];
+                    }
+                    substrings = CalInSpeical(substrings);
+                    for (int k = 0;k<strings.length-1-i;k++){
+                        strings[i+k+1] = substrings[k];
+                    }
+                }
                 double number = Double.parseDouble(strings[i + 1]);
                 strings[i] = String.valueOf(Math.log(number)/Math.log(10));
                 strings[i + 1] = " ";
                 i++;
                 continue;
             } else if (strings[i].equals("root")) {
+                if (strings[i+1].equals("(")){
+                    String[] substrings = new String[strings.length-i-1];
+                    for (int j = 0;j<strings.length-i-1;j++){
+                        substrings[j] = strings[i+j+1];
+                    }
+                    substrings = CalInSpeical(substrings);
+                    for (int k = 0;k<strings.length-1-i;k++){
+                        strings[i+k+1] = substrings[k];
+                    }
+                }
+
                 double number = Double.parseDouble(strings[i + 1]);
                 strings[i] = String.valueOf(Math.sqrt(number));
                 strings[i + 1] = " ";
                 i++;
                 continue;
+
             } else if (strings[i].equals("^")) {
                 if (i!=0) {
+                    if (strings[i-1].equals(")")){
+                        String pre = new String();
+                        int flag1 = 0;
+                        int flag2 = 0;
+                        for (int j = i-1;j>=0;j--){
+                            if (isNumber(strings[j])){
+                                pre = strings[j] + pre;
+                            } else {
+                                pre = "_" + strings[j] + "_" +pre;
+                                if (strings[j].equals("(")){
+                                    flag1++;
+                                    if (flag1==flag2){
+                                        String pres = getResult(pre);
+                                        strings[i-1] = pres;
+                                        System.out.println("pow-1: "+strings[i-1]);
+                                        for (int k = i-2;k>j-1;k--){
+                                            strings[k] = " ";
+                                        }
+                                    }
+                                } else if (strings[j].equals(")")){
+                                    flag2++;
+                                }
+                            }
+                        }
+                    }
+                    if (strings[i+1].equals("(")){
+                        String[] substrings = new String[strings.length-i-1];
+                        for (int j = 0;j<strings.length-i-1;j++){
+                            substrings[j] = strings[i+j+1];
+                        }
+                        substrings = CalInSpeical(substrings);
+                        for (int k = 0;k<strings.length-1-i;k++){
+                            strings[i+k+1] = substrings[k];
+                        }
+                    }
+                    for (int h=i-1;h>=0;h--){
+                        if (isNumber(strings[h])&&strings[h+1]==" "&&h!=i-1){
+                            strings[i-1] = strings[h];
+                            strings[h] = " ";
+                            break;
+                        }
+                    }
+                    System.out.println("pow-1: "+strings[i-1]);
                     double number1 = Double.parseDouble(strings[i - 1]);
                     double number2 = Double.parseDouble(strings[i + 1]);
                     strings[i] = String.valueOf(Math.pow(number1,number2));
@@ -168,15 +303,72 @@ public class Calculate {
                     continue;
                 }
             } else if (strings[i].equals("Ne")) {
-                    double number = Double.parseDouble(strings[i + 1]);
-                    strings[i] = String.valueOf(0-number);
-                    strings[i + 1] = " ";
-                    i = i++;
-                    continue;
+                if (strings[i+1].equals("(")){
+                    String[] substrings = new String[strings.length-i-1];
+                    for (int j = 0;j<strings.length-i-1;j++){
+                        substrings[j] = strings[i+j+1];
+                    }
+                    substrings = CalInSpeical(substrings);
+                    for (int k = 0;k<strings.length-1-i;k++){
+                        strings[i+k+1] = substrings[k];
+                    }
+                }
+                double number = Double.parseDouble(strings[i + 1]);
+                strings[i] = String.valueOf(0-number);
+                strings[i + 1] = " ";
+                i = i++;
+                continue;
             }
         }
 
         return strings;
+    }
+
+    /**
+     * calculate every functions inner of sin(),log(),etc...
+     * @param substrings
+     * @return
+     */
+    public static String[] CalInSpeical(String[] substrings){
+        int flag1 = 0;
+        int flag2 = 0;
+        String s = new String();
+//        for (int i = 0; i<substrings.length;i++){
+//            System.out.println("substring["+i+"]: "+substrings[i]);
+//        }
+        if (substrings[0].equals("(")&&substrings.length>1) {
+            int flag = 0;
+            for (int i = 0; i < substrings.length; i++) {
+                if (isNumber(substrings[i])){
+                    s = s+substrings[i];
+                } else {
+                    s = s+"_"+substrings[i]+"_";
+
+                }
+                if (substrings[i].equals(")")){
+                    flag2++;
+                    //System.out.println(s);
+                    //System.out.println(i);
+                    //System.out.println(flag1);
+                    //System.out.println(flag2);
+                    if (flag1==flag2){
+                        System.out.println("innerstring: "+s);
+                        String r = getResult(s);
+                        substrings[0] = r;
+                        for (int j = 1; j<i+1; j++){
+                            substrings[j] = " ";
+                        }
+                        break;
+                    }
+                } else if (substrings[i].equals("(")){
+                    flag1++;
+                }
+            }
+        }
+        for (int i = 0;i<substrings.length;i++){
+            System.out.println("substrings["+i+"]: "+substrings[i]);
+        }
+        return substrings;
     }
 
     /**
@@ -229,5 +421,20 @@ public class Calculate {
                 break;
         }
         return ord;
+    }
+
+    public static String[] deleteSpace(String[] strings){
+        String s = new String();
+        for (int i =0;i<strings.length;i++){
+            if (!strings[i].equals(" ")){
+                s = s+strings[i]+"_";
+            }
+
+        }
+        if (s.charAt(s.length()-1)=='_'){
+            s = s.substring(0,s.length()-1);
+        }
+        String[] strings1 = s.trim().split("_");
+        return strings1;
     }
 }
