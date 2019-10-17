@@ -546,10 +546,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             case R.id.button68://"."
             {
-
+                if(flag==0) {
 
                     input += ".";
                     inputview.setText(input);
+                }
+                else valueX+=".";
 
             }
             break;
@@ -779,6 +781,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         if(Assignnumber(function).equals("input X")){
 
                             double x=Double.parseDouble(valueX);
+                            outputview.setText(valueX);
                             input=assignX(function,x);
                             inputview.setText(input);
                         }
