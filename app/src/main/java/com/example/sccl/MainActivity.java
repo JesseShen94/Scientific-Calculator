@@ -805,8 +805,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 String innerfunciton=transfer(input);
                 inputview.setText(input);
-//                String out= getResult(innerfunciton)+"";
-                outputview.setText(innerfunciton);
+                String out= Calculate.getResult(innerfunciton)+"";
+                outputview.setText(out);
 
             }
             break;
