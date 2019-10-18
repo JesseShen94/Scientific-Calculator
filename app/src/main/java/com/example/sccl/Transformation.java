@@ -2,9 +2,12 @@ package com.example.sccl;
 
 public class Transformation {
     /**
-     * \
+     * Determing the number of variables contained in the input function
      * @param function
-     * @return
+     * @return "ERROR!!!" if there is no X or Y in the function
+     * @return "input X"  if there is only X in the function
+     * @return "input Y" if there is only Y in the function
+     * @return "input X,Y " if there are both X and Y in the function
      */
     public static String AssignNumber(String function) {
         Boolean X = false;
@@ -32,6 +35,12 @@ public class Transformation {
         return "ERROR!!!";
     }
 
+    /**
+     * Replace all the X characters in function with the String form of num
+     * @param function
+     * @param num
+     * @return replaced formula without X
+     */
     public static String assignX(String function, double num) {
         try{
             String newf = "";
@@ -50,6 +59,12 @@ public class Transformation {
 
     }
 
+    /**
+     * Replace all the Y characters in function with the String form of y
+     * @param function
+     * @param y
+     * @return replaced formula without Y
+     */
     public static String assignY(String function, double y) {
         try{
             String newf = "";
@@ -68,6 +83,13 @@ public class Transformation {
 
 
     }
+    /**
+     * Replace all the X and Y characters in function with the String form of x, y
+     * @param function
+     * @param x
+     * @param y
+     * @return replaced formula without X Y
+     */
 
     public static String assignXY(String function, double x, double y) {
         try{
@@ -86,6 +108,27 @@ public class Transformation {
         }
     }
 
+    /**
+     * Convert input to postfix expression according to established rules
+     * The rules:
+     * '×'-->'_*_'
+     * '÷'-->'_/_'
+     * '－'-->'_－_'
+     * '+'-->'_+_'
+     * 'π'-->'_pi_'
+     * 'e'-->'_E_'
+     * '('-->'_(_'
+     * ')'-->'_)_'
+     * '√'-->'_root_'
+     * 'sin'-->'_sin_'
+     * 'cos'-->'_cos_'
+     * 'tan'-->'_tan_'
+     * '^'-->'_^_'
+     * 'lg'-->'_lg_'
+     * 'ln'-->'_ln_'
+     * @param input
+     * @return rearranged formula.
+     */
     public static String transfer(String input) {
         String innerFuction = "";
         for (int i = 0; i < input.length(); i++) {

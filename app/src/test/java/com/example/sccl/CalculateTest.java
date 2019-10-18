@@ -316,9 +316,6 @@ public class CalculateTest {
 
     }
 
-    @Test
-    public void isNumber() {
-    }
 
 
 }
