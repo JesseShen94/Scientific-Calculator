@@ -86,11 +86,7 @@ public class Calculate {
             }
         }
         String[] strings = fixNotation(notation);
-        String stringsarray = new String();
-        for (int i =0;i<strings.length;i++){
-            stringsarray += strings[i];
-        }
-        System.out.println("fixNotation: "+stringsarray);
+
         for (int i = 0; i < strings.length; i++) {
             String s = strings[i].trim();
             if (isNumber(s)) {
