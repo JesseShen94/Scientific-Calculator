@@ -220,7 +220,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             break;
 
             case R.id.button65:// first judge it is null or not, than delete
-                //reference:
+                //reference: https://blog.csdn.net/rikkatheworld/article/details/77119625
             {
                 if (input.indexOf(" ") == input.length() - 3) {
                     input = input.substring(0, input.length() - 2);
