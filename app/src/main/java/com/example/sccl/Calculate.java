@@ -8,8 +8,8 @@ public class Calculate {
 
     /**
      * main function about calculating and get a result
-     * @param formula
-     * @return result or error
+     * @param formula a String including split flag "_"
+     * @return result or error. the result is a string whose value is the result of formula
      */
     public static String getResult(String formula){
         try {
@@ -18,6 +18,9 @@ public class Calculate {
             double result = 0;
             while (!num.isEmpty()) {
                 String temp = String.valueOf(num.remove(0));
+                //the fisrt Stirng of num is " ".
+
+                //if is number, into stack; else, it must be a operator.
                 if (isNumber(temp)) {
                     double s=Double.parseDouble(temp);
                     stack.push(s);
@@ -74,6 +77,8 @@ public class Calculate {
     public static List<String> transform(String notation){
         List<String> element = new ArrayList<>();
         Stack<String> stack = new Stack<>();
+
+        //simplify the notation by replace "__" by "_"
         for (int i = 0;i<notation.trim().length();i++){
             if (notation.charAt(i) == '_'&&i!=notation.length()-1){
                 if (notation.charAt(i+1)=='_'){
@@ -85,8 +90,12 @@ public class Calculate {
                 }
             }
         }
+
+        //replace all special function such as sin by its calculate result.
         String[] strings = fixNotation(notation);
 
+        //change the infix notation form into postfix notation form
+        //use stack to get the order and ensure the ")" must meet the closest "("
         for (int i = 0; i < strings.length; i++) {
             String s = strings[i].trim();
             if (isNumber(s)) {
@@ -117,6 +126,7 @@ public class Calculate {
 
     /**
      * fix the format of notation, including E, pi, sin, cos, tan, log, ln, lg, root, pow and negative
+     * if find special function, calculate it with number after it. if it's not a number, return error.
      * @param notation
      * @return
      */
@@ -131,6 +141,7 @@ public class Calculate {
                 strings[i] = String.valueOf(Math.PI);
             } else if (strings[i].equals("sin")){
                 if (strings[i+1].equals("(")){
+                    //calculate the number if after sin is a equation with ()
                     String[] substrings = new String[strings.length-i-1];
                     for (int j = 0;j<substrings.length;j++){
                         substrings[j] = strings[i+j+1];
@@ -326,9 +337,7 @@ public class Calculate {
         int flag1 = 0;
         int flag2 = 0;
         String s = new String();
-//        for (int i = 0; i<substrings.length;i++){
-//            System.out.println("substring["+i+"]: "+substrings[i]);
-//        }
+
         if (substrings[0].equals("(")&&substrings.length>1) {
             int flag = 0;
             for (int i = 0; i < substrings.length; i++) {
@@ -340,12 +349,8 @@ public class Calculate {
                 }
                 if (substrings[i].equals(")")){
                     flag2++;
-                    //System.out.println(s);
-                    //System.out.println(i);
-                    //System.out.println(flag1);
-                    //System.out.println(flag2);
+
                     if (flag1==flag2){
-                        System.out.println("innerstring: "+s);
                         String r = getResult(s);
                         substrings[0] = r;
                         for (int j = 1; j<i+1; j++){
@@ -357,9 +362,6 @@ public class Calculate {
                     flag1++;
                 }
             }
-        }
-        for (int i = 0;i<substrings.length;i++){
-            System.out.println("substrings["+i+"]: "+substrings[i]);
         }
         return substrings;
     }
