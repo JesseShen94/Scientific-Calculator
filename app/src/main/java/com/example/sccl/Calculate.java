@@ -259,7 +259,6 @@ public class Calculate {
                                     if (flag1==flag2){
                                         String pres = getResult(pre);
                                         strings[i-1] = pres;
-                                        System.out.println("pow-1: "+strings[i-1]);
                                         for (int k = i-2;k>j-1;k--){
                                             strings[k] = " ";
                                         }
@@ -287,7 +286,7 @@ public class Calculate {
                             break;
                         }
                     }
-                    System.out.println("pow-1: "+strings[i-1]);
+
                     double number1 = Double.parseDouble(strings[i - 1]);
                     double number2 = Double.parseDouble(strings[i + 1]);
                     strings[i] = String.valueOf(Math.pow(number1,number2));

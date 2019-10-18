@@ -79,9 +79,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     //set up button for Euler's number;
 
     public Button ass;
-    public EditText inputview;
+    public TextView inputview;
     //set up button for assignment
-    public EditText outputview;
+    public TextView outputview;
     public String value = "";
     public String valueY = "";
     int flag = 0;
@@ -269,8 +269,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         // special functions instantiation
         //authored by Bojie Jia
 
-        inputview = findViewById(R.id.textView2);
-        outputview = findViewById(R.id.textView);
+        inputview = findViewById(R.id.input);
+        outputview = findViewById(R.id.output);
         num0.setOnClickListener(this);
         num1.setOnClickListener(this);
         num2.setOnClickListener(this);

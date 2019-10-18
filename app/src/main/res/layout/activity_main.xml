@@ -11,36 +11,27 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/textView"
-        android:layout_width="262dp"
-        android:layout_height="43dp"
 
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginRight="3dp"
+    <TextView
+        android:id="@+id/input"
+        android:layout_width="122dp"
+        android:layout_height="48dp"
         android:background="@drawable/textview_round_border"
-        android:text="output" />
-
-
-    <EditText
-        android:id="@+id/textView2"
-        android:layout_width="276dp"
-        android:layout_height="40dp"
-
-
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginRight="3dp"
+        android:hint="input"
+         />
+    <TextView
+        android:id="@+id/output"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/textview_round_border"
-
+        android:hint="output"
         />
+
+
+
+
+
+
 
     <GridLayout
         android:layout_width="wrap_content"
@@ -443,5 +434,7 @@
 
 
     </GridLayout>
+
+
 
 </LinearLayout>
