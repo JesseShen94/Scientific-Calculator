@@ -220,6 +220,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             break;
 
             case R.id.button65:// first judge it is null or not, than delete
+                //reference:
             {
                 if (input.indexOf(" ") == input.length() - 3) {
                     input = input.substring(0, input.length() - 2);
@@ -235,8 +236,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 if (flag == 1) {
                     value += "-";
 
+                    outputview.setText(value);
+
                 } else if (flag == 2) {
                     valueY += "-";
+
+                    outputview.setText(valueY);
                 } else {
                     input += "-";
                     inputview.setText(input);
@@ -247,8 +252,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "×";
+
+                    outputview.setText(input);
                 } else if (flag == 2) {
                     valueY += "×";
+                    input += "×";
+                    outputview.setText(input);
                 } else
 
                     input += "×";
@@ -261,8 +270,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "÷";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "÷";
+                    outputview.setText(valueY);
                 } else
                     input += "÷";
                 inputview.setText(input);
@@ -273,8 +284,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "－";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "－";
+                    outputview.setText(valueY);
                 } else
                     input += "－";
                 inputview.setText(input);
@@ -285,8 +298,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "+";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "+";
+                    outputview.setText(valueY);
                 } else
                     input += "+";
 
@@ -298,8 +313,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += ".";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += ".";
+                    outputview.setText(valueY);
                 } else
                     input += ".";
                 inputview.setText(input);
@@ -311,8 +328,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "0";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "0";
+                    outputview.setText(valueY);
                 } else
 
                     input += "0";
@@ -325,8 +344,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "1";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "1";
+                    outputview.setText(valueY);
                 } else
 
                     input += "1";
@@ -339,8 +360,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "2";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "2";
+                    outputview.setText(valueY);
                 } else
 
                     input += "2";
@@ -353,8 +376,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "3";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "3";
+                    outputview.setText(valueY);
                 } else
                     input += "3";
                 inputview.setText(input);
@@ -366,8 +391,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "4";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "4";
+                    outputview.setText(valueY);
                 } else
                     input += "4";
                 inputview.setText(input);
@@ -379,8 +406,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "5";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "5";
+                    outputview.setText(valueY);
                 } else
                     input += "5";
                 inputview.setText(input);
@@ -392,8 +421,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "6";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "6";
+                    outputview.setText(valueY);
                 } else
                     input += "6";
                 inputview.setText(input);
@@ -404,8 +435,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "7";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "7";
+                    outputview.setText(valueY);
                 } else
                     input += "7";
                 inputview.setText(input);
@@ -417,8 +450,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "8";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "8";
+                    outputview.setText(valueY);
                 } else
                     input += "8";
                 inputview.setText(input);
@@ -430,8 +465,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "9";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "9";
+                    outputview.setText(valueY);
                 } else {
                     input += "9";
                     inputview.setText(input);
@@ -444,8 +481,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "π";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "π";
+                    outputview.setText(valueY);
                 } else
                     input += "π";
                 inputview.setText(input);
@@ -458,8 +497,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
                 if (flag == 1) {
                     value += "e";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "e";
+                    outputview.setText(valueY);
                 } else
                     input += "e";
                 inputview.setText(input);
@@ -487,8 +528,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "(";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "(";
+                    outputview.setText(valueY);
                 } else
                     input += "(";
                 inputview.setText(input);
@@ -500,8 +543,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += ")";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += ")";
+                    outputview.setText(valueY);
                 } else
                     input += ")";
                 inputview.setText(input);
@@ -513,8 +558,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "√";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "√";
+                    outputview.setText(valueY);
                 } else
                     input += "√";
                 inputview.setText(input);
@@ -526,8 +573,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "sin";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "sin";
+                    outputview.setText(valueY);
                 } else
                     input += "sin";
                 inputview.setText(input);
@@ -538,8 +587,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "cos";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "cos";
+                    outputview.setText(valueY);
                 } else
                     input += "cos";
                 inputview.setText(input);
@@ -550,8 +601,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "tan";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "tan";
+                    outputview.setText(valueY);
                 } else
                     input += "tan";
                 inputview.setText(input);
@@ -562,8 +615,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "^";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "^";
+                    outputview.setText(valueY);
                 } else
                     input += "^";
                 inputview.setText(input);
@@ -574,8 +629,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "lg";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "lg";
+                    outputview.setText(valueY);
                 } else
                     input += "lg";
 
@@ -587,8 +644,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (flag == 1) {
                     value += "ln";
+                    outputview.setText(value);
                 } else if (flag == 2) {
                     valueY += "ln";
+                    outputview.setText(valueY);
                 } else
                     input += "ln";
                 inputview.setText(input);
@@ -632,7 +691,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 } catch (IOException e){
                     return;
                 }
-                inputview.setText(function);
+                input=function;
+                inputview.setText(input);
             }
             break;
 
@@ -661,7 +721,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         outputview.setText(input);
                         flag = 0;
                     } else if (Transformation.AssignNumber(input).equals("input X,Y")) {
-                        String text = "X=" + value;
+                        String text = "X=" + value+"， input Y";
+
+                        double x = Double.parseDouble(Calculate.getResult(value));
+                        input=Transformation.assignX(input,x);
+
                         inputview.setText(text);
                         flag = 2;
                     }
@@ -672,14 +736,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 else if (flag == 2) {
                     String text = "X=" + value + ", Y=" + valueY;
                     inputview.setText(text);
-                    double x = Double.parseDouble(value);
-                    double y = Double.parseDouble(valueY);
-                    input = Transformation.assignXY(input, x, y);
-                    outputview.setText(input);
-                    flag = 0;
-                } else {
-                    inputview.setText("ERROR!!!!!");
-                }
+                    if (Transformation.transfer(Calculate.getResult(value)).equals("error")||Transformation.transfer(Calculate.getResult(valueY)).equals("error")||(Transformation.transfer(Calculate.getResult(text))).equals("error")) {
+                        inputview.setText("input error, check your format plz");
+                        flag = 0;
+                    } else {
+
+                        double y = Double.parseDouble(Calculate.getResult(valueY));
+                        input = Transformation.assignY(input, y);
+                        outputview.setText(input);
+                        flag = 0;
+                    }
+                    }
 
             }
             break;

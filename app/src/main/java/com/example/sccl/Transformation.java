@@ -1,6 +1,11 @@
 package com.example.sccl;
 
 public class Transformation {
+    /**
+     * \
+     * @param function
+     * @return
+     */
     public static String AssignNumber(String function) {
         Boolean X = false;
         Boolean Y = false;
@@ -28,42 +33,57 @@ public class Transformation {
     }
 
     public static String assignX(String function, double num) {
-        String newf = "";
-        for (int i = 0; i < function.length(); i++) {
-            if (function.charAt(i) != 'X') {
-                newf += function.charAt(i);
-            } else newf += num;
+        try{
+            String newf = "";
+            for (int i = 0; i < function.length(); i++) {
+                if (function.charAt(i) != 'X') {
+                    newf += function.charAt(i);
+                } else newf += num;
 
+            }
+            return newf;
+        }catch (Exception e){
+            return "ERROR: Illegal formatX";
         }
-        return newf;
+
+
 
     }
 
     public static String assignY(String function, double y) {
-        String newf = "";
-        for (int i = 0; i < function.length(); i++) {
-            if (function.charAt(i) != 'Y') {
-                newf += function.charAt(i);
-            } else newf += y;
+        try{
+            String newf = "";
+            for (int i = 0; i < function.length(); i++) {
+                if (function.charAt(i) != 'Y') {
+                    newf += function.charAt(i);
+                } else newf += y;
 
+            }
+            return newf;
+        }catch (Exception e){
+            return "ERROR: Illegal formatY";
         }
-        return newf;
+
+
 
 
     }
 
     public static String assignXY(String function, double x, double y) {
-        String newf = "";
-        for (int i = 0; i < function.length(); i++) {
-            if (function.charAt(i) == 'X') {
-                newf += x;
-            } else if (function.charAt(i) == 'Y') {
-                newf += y;
-            } else newf += function.charAt(i);
+        try{
+            String newf = "";
+            for (int i = 0; i < function.length(); i++) {
+                if (function.charAt(i) == 'X') {
+                    newf += x;
+                } else if (function.charAt(i) == 'Y') {
+                    newf += y;
+                } else newf += function.charAt(i);
 
+            }
+            return newf;
+        }catch (Exception e){
+            return "ERROR:Illegal format XY";
         }
-        return newf;
-
     }
 
     public static String transfer(String input) {
