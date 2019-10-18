@@ -89,122 +89,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     String function = "";//String function for save,load and assign
 
 
-    private static String Assignnumber(String function) {
-        Boolean X = false;
-        Boolean Y = false;
-        for (int i = 0; i < function.length(); i++) {
-            if (function.charAt(i) == 'X') {
-                X = true;
-            }
-            if (function.charAt(i) == 'Y') {
-                Y = true;
-            }
-        }
-        if (!X && !Y) {
-            return "ERROR!!!";
-        }
-        if (X && !Y) {
-            return "input X";
-        }
-        if (!X && Y) {
-            return "input Y";
-        }
-        if (X && Y) {
-            return "input X,Y";
-        }
-        return "ERROR!!!";
-    }
 
-    private static String assignX(String function, double num) {
-        String newf = "";
-        for (int i = 0; i < function.length(); i++) {
-            if (function.charAt(i) != 'X') {
-                newf += function.charAt(i);
-            } else newf += num;
-
-        }
-        return newf;
-
-    }
-
-    private static String assignY(String function, double y) {
-        String newf = "";
-        for (int i = 0; i < function.length(); i++) {
-            if (function.charAt(i) != 'Y') {
-                newf += function.charAt(i);
-            } else newf += y;
-
-        }
-        return newf;
-
-
-    }
-
-    private static String assignXY(String function, double x, double y) {
-        String newf = "";
-        for (int i = 0; i < function.length(); i++) {
-            if (function.charAt(i) == 'X') {
-                newf += x;
-            } else if (function.charAt(i) == 'Y') {
-                newf += y;
-            } else newf += function.charAt(i);
-
-        }
-        return newf;
-
-    }
-
-    private static String transfer(String input) {
-        String innerFuction = "";
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) == '×') {
-                innerFuction += "_*_";
-            } else if (input.charAt(i) == '÷') {
-                innerFuction += "_/_";
-            } else if (input.charAt(i) == '－') {
-                innerFuction += "_-_";
-            } else if (input.charAt(i) == '+') {
-                innerFuction += "_+_";
-            } else if (input.charAt(i) == '-') {
-                innerFuction += "_Ne_";
-            } else if (input.charAt(i) == 'π') {
-                innerFuction += "_pi_";//
-            } else if (input.charAt(i) == 'e') {
-                innerFuction += "_E_";
-            } else if (input.charAt(i) == '(') {
-                innerFuction += "_(_";
-            } else if (input.charAt(i) == ')') {
-                innerFuction += "_)_";
-            } else if (input.charAt(i) == '√') {
-                innerFuction += "_root_";
-            } else if (input.charAt(i) == 's' && input.charAt(i + 1) == 'i' && input.charAt(i + 2) == 'n') {
-                innerFuction += "_sin_";
-                i = i + 2;
-                continue;
-            } else if (input.charAt(i) == 'c' && input.charAt(i + 1) == 'o' && input.charAt(i + 2) == 's') {
-                innerFuction += "_cos_";
-                i = i + 2;
-                continue;
-            } else if (input.charAt(i) == 't' && input.charAt(i + 1) == 'a' && input.charAt(i + 2) == 'n') {
-                innerFuction += "_tan_";
-                i = i + 2;
-                continue;
-            } else if (input.charAt(i) == '^') {
-                innerFuction += "_^_";
-
-
-            } else if (input.charAt(i) == 'l' && input.charAt(i + 1) == 'g' ) {
-                innerFuction += "_lg_";
-                i = i + 1;
-                continue;
-            } else if (input.charAt(i) == 'l' && input.charAt(i + 1) == 'n') {
-                innerFuction += "_ln_";
-                i = i + 1;
-                continue;
-            } else innerFuction += input.charAt(i);
-        }
-        return innerFuction;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -754,33 +639,33 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.assgin: //assign value for function
             {
                 if (flag == 0) {
-                    inputview.setText(Assignnumber(input));
+                    inputview.setText(Transformation.AssignNumber(input));
                     flag = 1;
-                    if(Assignnumber(input).equals("ERROR!!!")){
+                    if(Transformation.AssignNumber(input).equals("ERROR!!!")){
                         flag=0;
                     }
                 } else if (flag == 1) {
 
-                    if (Assignnumber(input).equals("input X")) {
+                    if (Transformation.AssignNumber(input).equals("input X")) {
                         String text = "X=" + value;
                         inputview.setText(text);
                         double x = Double.parseDouble(value);
-                        input = assignX(input, x);
+                        input = Transformation.assignX(input, x);
                         outputview.setText(input);
                         flag = 0;
-                    } else if (Assignnumber(input).equals("input Y")) {
+                    } else if (Transformation.AssignNumber(input).equals("input Y")) {
                         String text = "Y=" + value;
                         inputview.setText(text);
                         double y = Double.parseDouble(value);
-                        input = assignY(input, y);
+                        input = Transformation.assignY(input, y);
                         outputview.setText(input);
                         flag = 0;
-                    } else if (Assignnumber(input).equals("input X,Y")) {
+                    } else if (Transformation.AssignNumber(input).equals("input X,Y")) {
                         String text = "X=" + value;
                         inputview.setText(text);
                         flag = 2;
                     }
-                    else if(Assignnumber(input).equals("ERROR!!!")){
+                    else if(Transformation.AssignNumber(input).equals("ERROR!!!")){
                         flag=0;
                     }
                 }
@@ -789,7 +674,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     inputview.setText(text);
                     double x = Double.parseDouble(value);
                     double y = Double.parseDouble(valueY);
-                    input = assignXY(input, x, y);
+                    input = Transformation.assignXY(input, x, y);
                     outputview.setText(input);
                     flag = 0;
                 } else {
@@ -801,7 +686,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             case R.id.button28://equal
             {
-                String innerfunciton = transfer(input);
+                String innerfunciton = Transformation.transfer(input);
                 inputview.setText(input);
                 String out = Calculate.getResult(innerfunciton) + "";
                 outputview.setText(out);
